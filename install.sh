@@ -3,7 +3,7 @@ var_path=$PWD
 
 
 printf "Creating symlinks\n"
-echo "Kitty: "
+printf "Kitty:\t"
 if [ -d "/home/$USER/.config/kitty" ]; then
 	printf "Directory already exits. Skipping\n"
 else
@@ -11,7 +11,7 @@ else
 	printf "Symlink created!\n"
 fi
 
-printf "Nano: "
+printf "Nano:\t"
 if [ -d "/home/$USER/.config/nano" ]; then
 	printf "Directory already exits. Skipping\n"
 else
@@ -20,4 +20,4 @@ else
 fi
 
 
-printf "Setting bashrc: \n"
+# printf "Setting bashrc: \n"
