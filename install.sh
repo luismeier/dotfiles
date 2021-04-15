@@ -19,5 +19,21 @@ else
 	printf "Symlink created!\n"
 fi
 
+# printf "Polybar:\t"
+# if [ -d "/home/$USER/.config/polybar" ]; then
+# 	printf "Directory already exits. Skipping\n"
+# else
+# 	ln -s $var_path/polybar /home/$USER/.config/
+# 	printf "Symlink created!\n"
+# fi
+
+printf "Dunst:\t"
+if [ -d "/home/$USER/.config/dunst" ]; then
+	printf "Directory already exits. Skipping\n"
+else
+	ln -s $var_path/dunst /home/$USER/.config/
+	printf "Symlink created!\n"
+fi
+
 
 # printf "Setting bashrc: \n"
