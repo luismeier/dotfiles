@@ -52,7 +52,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 50-
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 250+
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 250- 
 
-bindsym $mod+y exec --no-startup-id brightnessctl 50-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -119,16 +118,18 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+# set $ws1 "1:  "
+# set $ws2 "2:  "
+set $ws1 "1: www"
+set $ws2 "2: term"
+set $ws3 "3: dev"
+set $ws4 "4: file"
+set $ws5 "5: com"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10: 🎵"
+set $ws10 "10: music"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -141,8 +142,6 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-
-
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -180,7 +179,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-exec --no-startup-id synclient VertScrollDelta=-111
+exec --no-startup-id synclient VertScrollDelta=-111 
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -239,9 +238,10 @@ for_window [class="Spotify"] move container to workspace $ws10
 
 # Start Application shortcuts
 bindsym $mod+F1 exec firefox
-bindsym $mod+F2 exec palemoon
+bindsym $mod+F2 exec evolution
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F4 exec code
+bindsym $mod+F8 exec spotify
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -282,12 +282,11 @@ bindsym $mod+Return exec alacritty
 exec --no-startup-id nitrogen --restore
 
 
-
 #############################
 ### settings for i3-gaps: ###
 #############################
-gaps inner 10
-for_window [class=".*"] border pixel 5
+gaps inner 8
+for_window [class=".*"] border pixel 4
 
 # Draw borders only if it's not allone
 smart_gaps on
@@ -303,11 +302,16 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-flashback
 
 
+## Polybar
+# exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
+
+
 ## Bar on primary monitor
 bar {
     output primary
-    i3bar_command i3bar
-    status_command i3status --config ~/.config/i3/i3status.conf
+    i3bar_command i3bar -t
+    # status_command i3status --config ~/.config/i3/i3status.conf
+    status_command i3blocks -c ~/.config/i3blocks/primary.conf
     position top
 
     # Where to output systemtray
@@ -317,7 +321,7 @@ bar {
 	strip_workspace_numbers no
 
     colors {
-        background #222D31
+        background #222D310
         statusline #F9FAF9
         separator  #454947
 
@@ -334,12 +338,13 @@ bar {
 ## Bar on secondary monitors
 bar {
     output nonprimary
-    i3bar_command i3bar --transparency 10
+    status_command i3blocks -c ~/.config/i3blocks/nonprimary.conf
+    i3bar_command i3bar -t
     position top
     tray_output primary
 
     colors {
-        background #222D3100
+        background #222D31
         statusline #F9FAF9
         separator  #454947
 

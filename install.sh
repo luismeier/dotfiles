@@ -11,6 +11,14 @@ else
 	printf "Symlink created!\n"
 fi
 
+printf "i3Blocks:\t"
+if [ -d "/home/$USER/.config/i3blocks" ]; then
+	printf "Directory already exits. Skipping\n"
+else
+	ln -s $var_path/i3blocks /home/$USER/.config/
+	printf "Symlink created!\n"
+fi
+
 printf "Nano:\t"
 if [ -d "/home/$USER/.config/nano" ]; then
 	printf "Directory already exits. Skipping\n"
