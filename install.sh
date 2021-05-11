@@ -27,14 +27,6 @@ else
 	printf "Symlink created!\n"
 fi
 
-# printf "Polybar:\t"
-# if [ -d "/home/$USER/.config/polybar" ]; then
-# 	printf "Directory already exits. Skipping\n"
-# else
-# 	ln -s $var_path/polybar /home/$USER/.config/
-# 	printf "Symlink created!\n"
-# fi
-
 printf "Dunst:\t"
 if [ -d "/home/$USER/.config/dunst" ]; then
 	printf "Directory already exits. Skipping\n"
@@ -43,5 +35,18 @@ else
 	printf "Symlink created!\n"
 fi
 
+# printf "Picom:\t"
+# if [ -d "/home/$USER/.config/picom.conf" ]; then
+# 	printf "Directory already exits. Skipping\n"
+# else
+# 	ln -s $var_path/picom.conf /home/$USER/.config/
+# 	printf "Symlink created!\n"
+# fi
 
-# printf "Setting bashrc: \n"
+printf "Rofi:\t"
+if [ -d "/home/$USER/.config/rofi" ]; then
+	printf "Directory already exits. Skipping\n"
+else
+	ln -s $var_path/rofi /home/$USER/.config/
+	printf "Symlink created!\n"
+fi

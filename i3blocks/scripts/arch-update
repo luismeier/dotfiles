@@ -118,13 +118,10 @@ if args.aur:
     updates += get_aur_updates()
 
 update_count = len(updates)
-if update_count > 0:
-    if update_count == 1:
-      info = str(update_count) + ' update available'
-      short_info = str(update_count) + ' update'
-    else:
-      info = str(update_count) + ' updates available'
-      short_info = str(update_count) + ' updates'
+if update_count > 0:    
+    info = str(update_count) + ' updates'
+    short_info = str(update_count)
+    
 
     matches = matching_updates(updates, args.watch)
     if matches:
