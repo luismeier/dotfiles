@@ -1,13 +1,13 @@
 #!/bin/bash
-var_path=$PWD
+var_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
+printf "Creating symlinks:\n"
 
-printf "Creating symlinks\n"
-printf "Kitty:\t"
-if [ -d "/home/$USER/.config/kitty" ]; then
+printf "i3:\t"
+if [ -d "/home/$USER/.config/i3" ]; then
 	printf "Directory already exits. Skipping\n"
 else
-	ln -s $var_path/kitty /home/$USER/.config/
+	ln -s $var_path/i3 /home/$USER/.config/
 	printf "Symlink created!\n"
 fi
 
@@ -35,13 +35,13 @@ else
 	printf "Symlink created!\n"
 fi
 
-# printf "Picom:\t"
-# if [ -d "/home/$USER/.config/picom.conf" ]; then
-# 	printf "Directory already exits. Skipping\n"
-# else
-# 	ln -s $var_path/picom.conf /home/$USER/.config/
-# 	printf "Symlink created!\n"
-# fi
+printf "Alacritty:\t"
+if [ -d "/home/$USER/.config/alacritty" ]; then
+	printf "Directory already exits. Skipping\n"
+else
+	ln -s $var_path/alacritty /home/$USER/.config/
+	printf "Symlink created!\n"
+fi
 
 printf "Rofi:\t"
 if [ -d "/home/$USER/.config/rofi" ]; then
