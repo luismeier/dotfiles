@@ -96,11 +96,17 @@ fi
 ### ALIASES ###
 
 # Some ls aliases
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
+# alias ll='ls -alF --color=auto'
+# alias la='ls -A --color=auto'
+# alias l='ls -CF --color=auto'
+# alias dir='dir --color=auto'
+# alias vdir='vdir --color=auto'
+
+## Replace ls with exa
+alias ls='exa --icons'
+alias ll='exa -l --icons'
+alias la='exa -la --icons'
+alias lf='exa -a --icons'
 
 # Colorize grep output
 alias grep='grep --color=auto'
