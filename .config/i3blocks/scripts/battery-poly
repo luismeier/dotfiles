@@ -27,7 +27,7 @@ CURRENT_CHARGE_FILENAME = "energy_now"
 MAX_CHARGE_FILENAME = "energy_full"
 POWER_DRAW_FILENAME = "power_now"
 TLP_THRESHOLD_PERCENTAGE = 1.0
-PERCENTAGE_FORMAT = ".2%"
+PERCENTAGE_FORMAT = ".1%"
 
 if len(sys.argv) > 1:
     # parsing threshold
@@ -157,7 +157,7 @@ def calc_display_time(status: Status, seconds: int) -> str:
 
 
 def print_status(config: Configuration):
-    print(f"\uf240{config.percentage:{PERCENTAGE_FORMAT}}{calc_display_time(config.status, config.time_to_completion)}")
+    print(f"\uf240 {config.percentage:{PERCENTAGE_FORMAT}}{calc_display_time(config.status, config.time_to_completion)}")
 
 
 def main():
