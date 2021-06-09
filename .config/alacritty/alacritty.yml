@@ -1,5 +1,8 @@
 window:
  title: Alacritty
+ dimensions:
+    columns: 120
+    lines: 50
 
 
 # Font configuration (changes require restart)
@@ -56,3 +59,4 @@ dynamic_title: true
 #  - Underline
 #  - Beam
 cursor_style: Block
+
