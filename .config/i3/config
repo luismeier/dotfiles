@@ -46,8 +46,7 @@ font pango:SourceCodePro Medium 12
 ##############################
 ### Autostart applications ###
 ##############################
-
-exec_always "setxkbmap -layout ch" 
+exec_always --no-startup-id "setxkbmap -layout ch" 
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -298,13 +297,13 @@ for_window [class="Arandr"] floating enable
 
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-
+# bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id gnome-terminal
 
 ## Wallpaper
 # exec --no-startup-id nitrogen --restore
-exec_always nitrogen --random ~/wallpapers --save --set-zoom-fill 
-bindsym $mod+End exec nitrogen --random ~/wallpapers --save --set-zoom-fill 
+exec --no-startup-id nitrogen --random ~/wallpapers --save --set-zoom-fill 
+bindsym $mod+End exec --no-startup-id nitrogen --random ~/wallpapers --save --set-zoom-fill 
 
 
 #############################
