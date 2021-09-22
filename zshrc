@@ -107,9 +107,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Alias for config
-alias config='/usr/bin/git --git-dir=/home/luism/dotfiles/ --work-tree=/home/luism'
-
 # Adding flags to commands
 alias df="df -h"      # Human readable
 alias free="Free -m"  # Free in MB
