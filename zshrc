@@ -88,6 +88,8 @@ fi
 
 
 ### ALIASES ###
+## Alias to run dockers with gpu on archlinux
+alias docker-gpu='docker run --gpus all --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl'
 
 # Some ls aliases
 # alias ll='ls -alF --color=auto'
@@ -111,6 +113,9 @@ alias egrep='egrep --color=auto'
 alias df="df -h"      # Human readable
 alias free="Free -m"  # Free in MB
 
+# sudo alias
+#alias pls='sudo !!'
+
 # Confirm before overwriting things
 alias cp="cp -i"
 alias mv="mv -i"
@@ -118,3 +123,5 @@ alias rm="rm -i"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval $(thefuck --alias)
