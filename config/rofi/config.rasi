@@ -2,5 +2,6 @@ configuration {
     modi: "window,drun,ssh,combi";
     font: "pango:DejaVu Sans Mono 14";
     combi-modi: "window,drun,ssh";
-    #theme: "~/.config/rofi/themes/default.rasi";
 }
+//@theme "solarized"
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
