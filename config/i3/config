@@ -237,11 +237,11 @@ mode "ScreenMove" {
 	bindsym l move workspace to output down
 	bindsym odiaeresis move workspace to output right
 
-    # Same bindings but for arrow keys
-    bindsym Up move workspace to output up
-    bindsym Down move workspace to output down
-    bindsym Left move workspace to output left
-    bindsym Right move workspace to output right
+	# Same bindings but for arrow keys
+	bindsym Up move workspace to output up
+	bindsym Down move workspace to output down
+	bindsym Left move workspace to output left
+	bindsym Right move workspace to output right
 	
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
