@@ -17,8 +17,8 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 source /usr/share/zsh/share/antigen.zsh
 
-export EDITOR='vim'
-#export VISUAL='code'
+export EDITOR='nvim'
+export VISUAL='code'
 
 
 # Load the oh-my-zsh's library.
@@ -125,3 +125,9 @@ alias rm="rm -i"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval $(thefuck --alias)
+
+
+go_ros() {
+    export ROS_PYTHON_VERSION=3
+    source /opt/ros/noetic/setup.zsh
+}
