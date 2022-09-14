@@ -113,8 +113,9 @@ alias egrep='egrep --color=auto'
 alias df="df -h"      # Human readable
 alias free="Free -m"  # Free in MB
 
-# sudo alias
-#alias pls='sudo !!'
+# sudo !! alias
+alias pls='sudo "$BASH" -c "$(history -p !!)"'
+
 
 # Confirm before overwriting things
 alias cp="cp -i"
@@ -130,4 +131,12 @@ eval $(thefuck --alias)
 go_ros() {
     export ROS_PYTHON_VERSION=3
     source /opt/ros/noetic/setup.zsh
+}
+
+ros2_on(){
+     export ROS_DOMAIN_ID=42
+     export ROS_VERSION=2
+     export ROS_PYTHON_VERSION=3
+     export ROS_DISTRO=galactic
+     source /opt/ros2/galactic/setup.zsh
 }

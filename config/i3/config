@@ -297,7 +297,7 @@ for_window [class="Arandr"] floating enable
 
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id konsole
 # bindsym $mod+Return exec --no-startup-id gnome-terminal
 
 ## Wallpaper
