@@ -15,7 +15,7 @@ fi
 
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
-source /usr/share/zsh/share/antigen.zsh
+source ~/dotfiles/antigen.zsh
 
 export EDITOR='nvim'
 export VISUAL='code'
@@ -125,7 +125,8 @@ alias rm="rm -i"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval $(thefuck --alias)
+# Thefuck currently commented out
+# eval $(thefuck --alias)
 
 
 go_ros() {
@@ -133,7 +134,7 @@ go_ros() {
     source /opt/ros/noetic/setup.zsh
 }
 
-ros2_on(){
+go_ros2(){
      export ROS_DOMAIN_ID=42
      export ROS_VERSION=2
      export ROS_PYTHON_VERSION=3
