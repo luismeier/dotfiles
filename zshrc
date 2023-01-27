@@ -91,12 +91,7 @@ fi
 ## Alias to run dockers with gpu on archlinux
 alias docker-gpu='docker run --gpus all --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl'
 
-# Some ls aliases
-# alias ll='ls -alF --color=auto'
-# alias la='ls -A --color=auto'
-# alias l='ls -CF --color=auto'
-# alias dir='dir --color=auto'
-# alias vdir='vdir --color=auto'
+
 
 ## Replace ls with exa
 alias ls='exa --icons'
@@ -116,7 +111,6 @@ alias free="Free -m"  # Free in MB
 # sudo !! alias
 alias pls='sudo "$BASH" -c "$(history -p !!)"'
 
-
 # Confirm before overwriting things
 alias cp="cp -i"
 alias mv="mv -i"
@@ -128,6 +122,10 @@ alias rm="rm -i"
 # Thefuck currently commented out
 # eval $(thefuck --alias)
 
+# We add cuda to path
+# This should be symlinked to the right path
+export PATH="$PATH:/opt/cuda/bin/"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64"
 
 go_ros() {
     export ROS_PYTHON_VERSION=3
@@ -140,4 +138,18 @@ go_ros2(){
      export ROS_PYTHON_VERSION=3
      export ROS_DISTRO=galactic
      source /opt/ros2/galactic/setup.zsh
+}
+
+# Some ls aliases
+activate_ls(){
+  unalias ls
+  unalias ll
+  unalias la
+  unalias lf
+
+  alias ll='ls -alF --color=auto'
+  alias la='ls -A --color=auto'
+  alias l='ls -CF --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
 }
