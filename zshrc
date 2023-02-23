@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 #      _     _
@@ -13,21 +13,33 @@ fi
 # |_______|
 # My zsh config
 
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/luism/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# Hist settings
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
-source ~/dotfiles/antigen.zsh
-
+# Set editors
 export EDITOR='nvim'
 export VISUAL='code'
 
+# Load antigen
+source ~/dotfiles/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
+# Load plugins
 antigen bundle git
 antigen bundle pip
-antigen bundle command-not-found
+antigen bundle navi
+antigen bundle diff-so-fancy
+antigen bundle fzf
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
@@ -36,7 +48,12 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme romkatv/powerlevel10k
 
 # Tell Antigen that you're done.
+antigen bundle Aloxaf/fzf-tab
 antigen apply
+
+#
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --global interactive.diffFilter "diff-so-fancy --patch"
 
 ### PATH
 if [ -d "$HOME/.bin" ] ;
@@ -91,13 +108,16 @@ fi
 ## Alias to run dockers with gpu on archlinux
 alias docker-gpu='docker run --gpus all --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl'
 
-
+# Fedora Prime 
+alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 
 ## Replace ls with exa
-alias ls='exa --icons'
-alias ll='exa -l --icons'
-alias la='exa -la --icons'
-alias lf='exa -a --icons'
+if [ -x "$(command -v exa)" ]; then
+  alias ls='exa --icons'
+  alias ll='exa -l --icons'
+  alias la='exa -la --icons'
+  alias lf='exa -a --icons'
+fi
 
 # Colorize grep output
 alias grep='grep --color=auto'
@@ -153,3 +173,4 @@ activate_ls(){
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 }
+
