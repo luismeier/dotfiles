@@ -35,7 +35,7 @@ source ~/dotfiles/antigen.zsh
 antigen use oh-my-zsh
 
 # Load plugins
-antigen bundle git
+#antigen bundle git
 antigen bundle pip
 antigen bundle navi
 antigen bundle diff-so-fancy
@@ -104,19 +104,41 @@ fi
 
 
 
+### Distro specific stuff ###
+
+# Arch specific stuff
+if [ -f "/etc/arch-release" ]; then
+  ## Alias to run dockers with gpu on archlinux
+  alias docker-gpu='docker run --gpus all --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl'
+
+  # We add cuda to path
+  # This should be symlinked to the right path
+  export PATH="$PATH:/opt/cuda/bin/"
+  export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64"
+
+fi
+
+# Fedora specific stuff
+if [ -f "/etc/fedora-release" ]; then
+  # Setting an alias to prime-run
+  alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+fi
+
+
 ### ALIASES ###
-## Alias to run dockers with gpu on archlinux
-alias docker-gpu='docker run --gpus all --device /dev/nvidia0 --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools --device /dev/nvidiactl'
 
-# Fedora Prime 
-alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
-
-## Replace ls with exa
+## Replace ls with exa if available
 if [ -x "$(command -v exa)" ]; then
   alias ls='exa --icons'
-  alias ll='exa -l --icons'
+  alias ll='exa -ghl --icons'
   alias la='exa -la --icons'
   alias lf='exa -a --icons'
+else
+  alias ll='ls -alF --color=auto'
+  alias la='ls -A --color=auto'
+  alias l='ls -CF --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
 fi
 
 # Colorize grep output
@@ -126,7 +148,7 @@ alias egrep='egrep --color=auto'
 
 # Adding flags to commands
 alias df="df -h"      # Human readable
-alias free="Free -m"  # Free in MB
+alias free="free -m"  # Free in MB
 
 # sudo !! alias
 alias pls='sudo "$BASH" -c "$(history -p !!)"'
@@ -138,14 +160,6 @@ alias rm="rm -i"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Thefuck currently commented out
-# eval $(thefuck --alias)
-
-# We add cuda to path
-# This should be symlinked to the right path
-export PATH="$PATH:/opt/cuda/bin/"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/cuda/lib:/opt/cuda/lib64"
 
 go_ros() {
     export ROS_PYTHON_VERSION=3
@@ -159,18 +173,3 @@ go_ros2(){
      export ROS_DISTRO=galactic
      source /opt/ros2/galactic/setup.zsh
 }
-
-# Some ls aliases
-activate_ls(){
-  unalias ls
-  unalias ll
-  unalias la
-  unalias lf
-
-  alias ll='ls -alF --color=auto'
-  alias la='ls -A --color=auto'
-  alias l='ls -CF --color=auto'
-  alias dir='dir --color=auto'
-  alias vdir='vdir --color=auto'
-}
-
