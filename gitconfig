@@ -1,5 +1,8 @@
 [user]
-	email = meierluis@hotmail.de
+	email = luis.meier@ost.ch
 	name = Luis Meier
 [core]
 	editor = nano
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = diff-so-fancy --patch
