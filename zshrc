@@ -44,11 +44,12 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
 # Load the theme.
-# antigen theme robbyrussell
-antigen theme romkatv/powerlevel10k
+antigen theme robbyrussell
+#antigen theme romkatv/powerlevel10k
+
 
 # Tell Antigen that you're done.
-antigen bundle Aloxaf/fzf-tab
+#antigen bundle Aloxaf/fzf-tab
 antigen apply
 
 #
@@ -126,7 +127,7 @@ fi
 
 
 ### ALIASES ###
-
+alias vim="nvim"
 ## Replace ls with exa if available
 if [ -x "$(command -v exa)" ]; then
   alias ls='exa --icons'
@@ -140,6 +141,10 @@ else
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 fi
+
+# Git aliases
+alias gs="git status"
+alias gc="git commit"
 
 # Colorize grep output
 alias grep='grep --color=auto'
