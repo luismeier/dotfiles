@@ -4,4 +4,5 @@ configuration {
     combi-modi: "window,drun,ssh";
 }
 //@theme "solarized"
-@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"

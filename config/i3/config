@@ -12,32 +12,50 @@
 set $mod Mod4
 
 ## Colors
-set $bg #0E0F14
-set $fg #d4d5d6
+# set $bg #0E0F14
+# set $fg #d4d5d6
 
-set $color0 #0E0F14
-set $color1 #A9765F
-set $color2 #3C5682
-set $color3 #5D6482
-set $color4 #747A8B
-set $color5 #9299A7
-set $color6 #A6AAAF
-set $color7 #d4d5d6
-set $color8 #949595
-set $color9 #A9765F
-set $color10 #3C5682
-set $color11 #5D6482
-set $color12 #747A8B
-set $color13 #9299A7
-set $color14 #A6AAAF
-set $color15 #d4d5d6
+# set primary gruvbox colorscheme colors
+set $bg         #282828
+set $red        #cc241d
+set $green      #98971a
+set $yellow     #d79921
+set $blue       #458588
+set $purple     #b16286
+set $aqua       #689d68
+set $gray       #a89984
+set $darkgray   #1D2021
 
-# # class                   border      backgrnd    text    indicator 
-client.focused              $color2     $color2     $fg     $color1       
-client.focused_inactive     $bg         $bg         $fg     $bg       
-client.unfocused            $bg         $bg         $fg     $bg       
-client.urgent               $bg         $bg         $fg     $bg       
-client.placeholder          $bg         $bg         $fg     $bg       
+# set $color0 #0E0F14
+# set $color1 #A9765F
+# set $color2 #3C5682
+# set $color3 #5D6482
+# set $color4 #747A8B
+# set $color5 #9299A7
+# set $color6 #A6AAAF
+# set $color7 #d4d5d6
+# set $color8 #949595
+# set $color9 #A9765F
+# set $color10 #3C5682
+# set $color11 #5D6482
+# set $color12 #747A8B
+# set $color13 #9299A7
+# set $color14 #A6AAAF
+# set $color15 #d4d5d6
+
+# green gruvbox
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $green $green $darkgray $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+client.focused          $blue $blue $darkgray $purple $darkgray
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red 
 
 # Set the font
 font pango:SourceCodePro Medium 12
@@ -57,6 +75,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 # Dunst for notifications
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
+
+exec xrandr --dpi 220
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3blocks pkill -RTMIN+10 i3blocks
@@ -331,30 +351,30 @@ bar {
     position top
 
 #   font xft:URWGothic-Book 11
+    font pango: Droid Sans Mono 11
 	strip_workspace_numbers no
 
-    separator_symbol "/"
+    separator_symbol "|"
 
     colors {
          background $bg
-         statusline #F9FAF9
-         separator  #454947
-
+         statusline $blue
 # #                         border  backgr.     text
-        focused_workspace  $fg     $color4    $fg
-        active_workspace   #595B5B #353836     #FDF6E3
-        inactive_workspace #595B5B $color10    #EEE8D5
-        binding_mode       $fg     $color9     #F9FAF9
-        urgent_workspace   $color1 $color1     $fg
+        focused_workspace    $aqua $aqua $darkgray
+        inactive_workspace   $darkgray $darkgray $yellow
+        active_workspace     $darkgray $darkgray $yellow
+        urgent_workspace     $red $red $bg
      }
 
 }
 
 ## Bar on secondary monitors
 bar {
-    output nonprimary
-    status_command i3blocks -c ~/.config/i3blocks/nonprimary.conf
+    # output eDP-1
+    output DP-1-2.2
+
     i3bar_command i3bar -t
+    status_command i3blocks -c ~/.config/i3blocks/nonprimary.conf
     position top
     tray_output primary
 
@@ -364,10 +384,10 @@ bar {
         separator  #454947
 
 #                           border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
+        focused_workspace  $fg     $color4    $fg
+        active_workspace   #595B5B #353836     #FDF6E3
+        inactive_workspace #595B5B $color10    #EEE8D5
+        binding_mode       $fg     $color9     #F9FAF9
+        urgent_workspace   $color1 $color1     $fg
     }
 }
