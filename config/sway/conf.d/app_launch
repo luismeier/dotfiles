@@ -1,0 +1,3 @@
+bindsym $mod+F1 exec firefox
+bindsym $mod+F2 exec thunderbird
+bindsym $mod+F3 exec spotify

@@ -1,0 +1,18 @@
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id bash -c "pamixer --increase 5; ~/sway/scripts/notifications/audio-notification.sh"
+bindsym XF86AudioLowerVolume exec --no-startup-id bash -c "pamixer --decrease 5; ~/sway/scripts/notifications/audio-notification.sh"
+bindsym XF86AudioMute exec --no-startup-id bash -c "pamixer -t; ~/sway/scripts/notifications/audio-notification.sh"
+
+# MPRIS controls
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Brightness control
+#bindsym XF86MonBrightnessUp exec sh -c "brightnessctl set 3%+; sway/scripts/notifications/brightness-notification.sh"
+#bindsym XF86MonBrightnessDown exec sh -c "brightnessctl set 3%-; sway/scripts/notifications/brightness-notification.sh"
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 50+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 50-
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 250+
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 250-
+

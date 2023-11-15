@@ -1,0 +1,4 @@
+exec_always bash -c "pkill waybar; sleep 1 && waybar > ~/logs/waybar.log 2>&1"
+
+#exec blueman-applet
+#exec nm-applet
