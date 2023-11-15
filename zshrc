@@ -26,7 +26,7 @@ compinit
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 # Set editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='code'
 
 # Load antigen
@@ -132,8 +132,6 @@ fi
 
 
 ### ALIASES ###
-alias nvim="lvim"
-alias vim="lvim"
 alias v="lvim"
 
 ## Replace ls with exa if available
@@ -187,9 +185,6 @@ go_ros2(){
      export ROS_DISTRO=galactic
      source /opt/ros2/galactic/setup.zsh
 }
-
-
-
 
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
