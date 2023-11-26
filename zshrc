@@ -132,7 +132,7 @@ fi
 
 
 ### ALIASES ###
-alias v="lvim"
+alias v="nvim"
 
 ## Replace ls with exa if available
 if [ -x "$(command -v eza)" ]; then
