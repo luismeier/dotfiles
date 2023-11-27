@@ -30,7 +30,7 @@ export EDITOR='nvim'
 export VISUAL='code'
 
 # Load antigen
-source ~/.dotfiles/antigen.zsh
+source ~/dotfiles/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -146,6 +146,11 @@ else
   alias l='ls -CF --color=auto'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
+fi
+
+## Replace cat with bat
+if [ -x "$(command -v bat)" ]; then
+  alias cat='bat'
 fi
 
 # Git aliases
