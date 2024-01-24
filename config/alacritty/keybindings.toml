@@ -1,0 +1,6 @@
+[keyboard]
+bindings = [
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "F", mods = "Control", action = "SearchForward" },
+    { key = "F", mods = "Control|Shift", action = "SearchBackward" },
+]

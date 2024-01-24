@@ -1,6 +1,7 @@
 import = [
     # "~/dotfiles/config/alacritty/themes/cattpuchin-macchiato.toml",
     # "~/dotfiles/config/alacritty/themes/cattpuchin-latte.toml",
+    "~/dotfiles/config/alacritty/keybindings.toml",
 ]
 
 [colors]
