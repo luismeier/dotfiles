@@ -191,6 +191,8 @@ go_ros2(){
      source /opt/ros2/galactic/setup.zsh
 }
 
+# add cargo stuff to path
+export PATH="$PATH:/home/luism/.cargo/bin"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(zoxide init zsh)"
