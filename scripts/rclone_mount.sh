@@ -2,20 +2,20 @@
 
 function ask_mount
 {
-  read -p "What to mount? [P]ersonal, [T]eam, [A]ll, [Q]uit" type
+  read -p "What to mount? [P]ersonal, [T]eam, [A]ll, [Q]uit " type
   case $type in 
     [Pp]* )
       echo "Mounting Personal"
-      rclone mount OST-OneDrive: /home/luism/OST-OneDrive/personal/ --vfs-cache-mode full --daemon
+      rclone mount OST-OneDrive: /home/luism/OST-OneDrive/personal/ --poll-interval 0m1s --vfs-cache-mode full --daemon
       ;;
     [Tt]* ) 
       echo "Mounting Team"
-      rclone mount OST-SharePoint: /home/luism/OST-OneDrive/TeamDejan  --vfs-cache-mode full --daemon
+      rclone mount OST-SharePoint: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --vfs-cache-mode full --daemon
       ;;
     [Aa]* )
       echo "Mounting both"
-      rclone mount OST-SharePoint: /home/luism/OST-OneDrive/TeamDejan  --vfs-cache-mode full --daemon
-      rclone mount OST-OneDrive: /home/luism/OST-OneDrive/personal/ --vfs-cache-mode full --daemon
+      rclone mount OST-SharePoint: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --vfs-cache-mode full --daemon
+      rclone mount OST-OneDrive: /home/luism/OST-OneDrive/personal --poll-interval 0m1s --vfs-cache-mode full --daemon
       exit
       ;;
     [Qq]* )
@@ -26,7 +26,7 @@ function ask_mount
 
 function ask_umount
 {
-  read -p "What to unmount? [P]ersonal, [T]eam, [A]ll, [Q]uit" type
+  read -p "What to unmount? [P]ersonal, [T]eam, [A]ll, [Q]uit " type
   case $type in 
     [Pp]* )
       echo "unmounting Personal"
@@ -49,7 +49,7 @@ function ask_umount
 }
 
 while true; do
-  read -p "[M]ount or [u]nmount?[Q]uit" mount_type
+  read -p "[M]ount or [u]nmount?[Q]uit " mount_type
   case $mount_type in 
     [Mm]* )
       echo "Mount selected"
