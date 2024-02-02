@@ -15,4 +15,3 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 50+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 50-
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 250+
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 250-
-

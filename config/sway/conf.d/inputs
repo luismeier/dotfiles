@@ -6,7 +6,7 @@ input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
 
 ### Keyboards
 input type:keyboard {
-  xkb_layout gb,ch
+  xkb_layout ch
   xkb_variant de
     # xkb_options grp:rctrl_toggle
 }
