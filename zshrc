@@ -44,7 +44,7 @@ fi
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle wting/autojump
-# antigen bundle marlonrichert/zsh-autocomplete@main
+antigen bundle marlonrichert/zsh-autocomplete@main
 
 # Load the theme.
 #antigen theme robbyrussell
@@ -148,10 +148,10 @@ else
   alias vdir='vdir --color=auto'
 fi
 
-## Replace cat with bat
-if [ -x "$(command -v bat)" ]; then
-  alias cat='bat'
-fi
+### Replace cat with bat
+#if [ -x "$(command -v bat)" ]; then
+# alias cat='bat'
+#fi
 
 # Git aliases
 alias gs="git status"
