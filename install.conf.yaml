@@ -19,3 +19,10 @@
 - shell:
     - git submodule update --init --recursive
     - chsh -s $(which zsh)
+
+- flatpak:
+  - Bitwarden
+  - Logseq
+  - Spotify
+  - Signal 
+  - Zotero
