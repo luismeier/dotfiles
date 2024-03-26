@@ -44,8 +44,8 @@ fi
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle wting/autojump
-antigen bundle marlonrichert/zsh-autocomplete@main
-
+# antigen bundle marlonrichert/zsh-autocomplete@main
+antigen bundle command-not-found
 # Load the theme.
 #antigen theme robbyrussell
 antigen theme romkatv/powerlevel10k
@@ -184,11 +184,14 @@ go_ros() {
 }
 
 go_ros2(){
+if [ -f "/etc/fedora-release" ]; then
+  source /usr/lib64/ros2-humble/setup.zsh
+else
      export ROS_DOMAIN_ID=42
      export ROS_VERSION=2
      export ROS_PYTHON_VERSION=3
-     export ROS_DISTRO=galactic
-     source /opt/ros2/galactic/setup.zsh
+     source /opt/ros/humble/setup.zsh
+fi
 }
 
 # add cargo stuff to path
