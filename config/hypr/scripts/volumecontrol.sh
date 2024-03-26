@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 
 ScrDir=$(dirname "$(realpath "$0")")
-source $ScrDir/globalcontrol.sh
+#source $ScrDir/globalcontrol.sh
 
+icodir="~/.config/dunst/icons"
 # define functions
 
 function print_error
