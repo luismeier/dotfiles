@@ -32,7 +32,7 @@
     #geometry = "300x60+15+46"
     width = (250, 350)
     height = 350
-    origin = top-center
+    origin = top-right
     offset = 10x10
 
     notification_limit = 9
