@@ -7,13 +7,13 @@
     // Choose the order of the modules
     "modules-left": [
      "clock",
-     "hyprland/window"
+      "custom/spotify",
+     "hyprland/window",
     ],
     "modules-center": [
       "hyprland/workspaces",
      ],
     "modules-right": [
-      "mpd",
       "idle_inhibitor",
       "pulseaudio",
       "network",
@@ -47,32 +47,7 @@
   {
     "format":"{short}",
   },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -165,6 +140,15 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/spotify": {
+    	"interval": 1,
+	"return-type": "json",
+	"exec": "~/.config/waybar/scripts/spotify.sh",
+	"exec-if": "pgrep spotify",
+	"escape": true
+
+    },
+
 }
 
