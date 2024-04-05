@@ -23,12 +23,12 @@ window#waybar.hidden {
 tooltip {
 border-radius: 8px;
 padding: 15px;
-background-color: #131822;
+background-color: @base;
 }
 
 tooltip label {
 padding: 5px;
-background-color: #131822;
+background-color: @base;
 }
 
 window#waybar.termite {
@@ -55,6 +55,7 @@ button:hover {
 }
 
 #workspaces button {
+    border-radius: 10px;
     padding: 0 5px;
     background-color: transparent;
     color: @text;
@@ -97,14 +98,19 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#language,
 #mpd {
+  /* Padding is text to box */
+  padding-left: 10px;
+  padding-right: 10px;
+  /* margin is space arround color box */
+  margin-right: 0px;
+  margin-left: 0px;
   margin-top: 2px;
-	margin-left: 8px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	transition: none;
+  margin-bottom:2px;
+
+  border-radius: 10px;
+  transition: none;
 }
 
 #window,
@@ -144,7 +150,7 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    background-color: @red;
     color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -158,20 +164,17 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
+    background-color: @sky;
     color: #000000;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: @lavender;
 }
 
-#disk {
-    background-color: #964B00;
-}
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: @blue;
 }
 
 #network {
@@ -179,7 +182,7 @@ label:focus {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: @red;
 }
 
 #pulseaudio {
@@ -201,19 +204,6 @@ label:focus {
     background-color: #f53c3c;
 }
 
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
 
 #temperature {
     background-color: #f0932b;
@@ -245,30 +235,10 @@ label:focus {
     color: #2d3436;
 }
 
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
 #language {
     background: #00b093;
     color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
     min-width: 16px;
-	  border-radius: 10px;
 }
 
 #keyboard-state {
@@ -287,13 +257,6 @@ label:focus {
     background: rgba(0, 0, 0, 0.2);
 }
 
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
 
 #custom-spotify {
 	margin-top: 2px;

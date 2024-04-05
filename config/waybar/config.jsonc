@@ -27,21 +27,30 @@
       ],
     "hyprland/workspaces": {
       "disable-scroll": true,
-//      "format":"{icon}",
+      "format":"{name}{icon}",
     "all-outputs": false,
     "on-click": "activate",
       "on-scroll-up": "hyprctl dispatch workspace e+1",
       "on-scroll-down": "hyprctl dispatch workspace e-1",
       "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
+             "1": " ",
+             "2": " ",
+             "3": " ",
+             "4": " ",
+             "8": " ",
+             "9": " ",
+             "10": " ",
              "urgent": "",
              "active": "",
-             "default": "",
-         }
+             "default": "",
+         },
+      "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+    }
+
     },
     "hyprland/language":
   {
@@ -66,7 +75,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": true 
     },
     "memory": {
         "format": "{}% "
@@ -91,12 +100,15 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "",
         "format-alt": "{time} {icon}",
+        "full-at": "96",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": true,
+          "tooltip-format": "{timeTo}\nPWR:{power}W"
     },
     "network": {
         "format-wifi": "{icon} {essid}",
