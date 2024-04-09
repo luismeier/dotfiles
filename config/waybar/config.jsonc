@@ -130,7 +130,7 @@
     "tooltip-format": "{timeTo}\nPWR:{power}W"
   },
   "network": {
-    "format-wifi": "{icon} {essid}",
+    "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
     "format-alt": "󱛇",
     "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
