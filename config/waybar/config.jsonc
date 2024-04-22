@@ -4,26 +4,35 @@
   "height": 34, // Waybar height (to be removed for auto height)
   "spacing": 0, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": [
-    "hyprland/window",
-    "custom/spotify",
-  ],
-  "modules-center": [
-    "hyprland/workspaces",
-  ],
+  "modules-left": ["hyprland/workspaces", "mpris"],
+  "modules-center": ["clock"],
   "modules-right": [
     "idle_inhibitor",
     "pulseaudio",
     "network",
     "cpu",
     "memory",
-    "temperature",
+    // "temperature",
     "backlight",
     "hyprland/language",
     "battery",
     "tray",
-    "clock",
   ],
+
+  "mpris": {
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "player-icons": {
+      "default": "",
+      "spotifyd": "",
+      "spotify": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+    "ignored-players": ["firefox"],
+  },
+
   "hyprland/workspaces": {
     "disable-scroll": true,
     "format": "{name}{icon}",
@@ -44,73 +53,78 @@
       "default": "",
     },
     "sort-by-number": true,
-    /* "persistent-workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
-    }*/
+      "4": [],
+      // "5": [],
+      // "6": [],
+      // "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+    },
   },
+
   "hyprland/language": {
     "format": "{short}",
   },
+
   "hyprland/window": {
     "format": "{class}",
-    "separate-outputs": true
+    "separate-outputs": true,
   },
+
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
-      "deactivated": ""
-    }
+      "deactivated": "",
+    },
   },
+
   "tray": {
     // "icon-size": 21,
-    "spacing": 10
+    "spacing": 10,
   },
+
   "clock": {
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format-alt": "{:%Y-%m-%d}",
+    "format": "{:%a, %d %b, %I:%M %p}",
   },
+
   "cpu": {
     "format": "{usage}% ",
-    "tooltip": true
+    "tooltip": true,
   },
+
   "memory": {
-    "format": "{}% "
+    "format": "{}% ",
   },
+
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "{temperatureC}°C {icon}",
-    "format-icons": [
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", ""],
   },
+
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", "", "", "", "", "", ""],
   },
+
   "battery": {
     "states": {
-      // "good": 95,
+      "good": 95,
       "warning": 30,
-      "critical": 15
+      "critical": 10,
     },
     "format": "{capacity}% {icon}",
     "format-charging": "{capacity}% ",
@@ -119,16 +133,11 @@
     "full-at": "96",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": ["", "", "", "", ""],
     "tooltip": true,
-    "tooltip-format": "{timeTo}\nPWR:{power}W"
+    "tooltip-format": "{timeTo}\nPWR:{power}W",
   },
+
   "network": {
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
@@ -138,15 +147,10 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-disconnected": "󰖪",
   },
+
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "󰂰 {volume}",
@@ -155,20 +159,9 @@
     "format-muted": "󰝟",
     "format-icons": {
       "headphone": "",
-      "default": [
-        "󰖀",
-        "󰕾",
-        ""
-      ]
+      "default": ["󰖀", "󰕾", ""],
     },
     "on-click": "pavucontrol",
-    "scroll-step": 1
-  },
-  "custom/spotify": {
-    "interval": 1,
-    "return-type": "json",
-    "exec": "~/.config/waybar/scripts/spotify.sh",
-    "exec-if": "pgrep spotify",
-    "escape": true
+    "scroll-step": 1,
   },
 }
