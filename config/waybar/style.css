@@ -21,8 +21,8 @@ tooltip {
 }
 
 tooltip label {
-  padding: 5px;
-  background-color: #131822;
+  /* padding: 5px; */
+  background-color: @base;
 }
 
 button {
@@ -53,7 +53,7 @@ button:hover {
 
 #workspaces button {
   transition: none;
-  color: #7c818c;
+  color: @text;
   /* background: #383c4a; */
   /* padding: 5px; */
   /* font-size: 18px; */
@@ -78,6 +78,9 @@ button:hover {
 
 #workspaces button.urgent {
   background-color: @red;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  border-radius: inherit;
 }
 #workspaces button.active {
   transition: none;
@@ -107,7 +110,8 @@ button:hover {
 #custom-spotify,
 #window,
 #mpris,
-/* #workspaces, */
+#power-profiles-daemon, 
+/* #workspaces, */ 
 #mpd {
   margin-top: 2px;
   margin-left: 8px;

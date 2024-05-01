@@ -5,7 +5,7 @@
   "spacing": 0, // Gaps between modules (4px)
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "mpris"],
-  "modules-center": ["clock"],
+  "modules-center": ["clock", "power-profiles-daemon"],
   "modules-right": [
     "idle_inhibitor",
     "pulseaudio",
@@ -19,6 +19,17 @@
     "tray",
   ],
 
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
   "mpris": {
     "format": "{player_icon} {artist} - {title}",
     "format-paused": "{status_icon} {artist} - {title}",
@@ -91,15 +102,39 @@
   },
 
   "clock": {
+    // for a doc on how to format this:
+    // https://howardhinnant.github.io/date/date.html#to_stream_formatting
     // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    // "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "format-alt": "{:%Y-%m-%d}",
-    "format": "{:%a, %d %b, %I:%M %p}",
+    "format": "{:%a, %d %b, %H:%M %p}",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      //   "on-click-right": "mode",
+      "format": {
+        //     "months": "<span color='#ffead3'><b>{}</b></span>",
+        //     "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>{}</b></span>",
+        //     "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up",
+    },
   },
 
   "cpu": {
-    "format": "{usage}% ",
+    // "format": "{usage}% ",
     "tooltip": true,
+    "interval": 2,
+    "format": "{icon} {usage:>2}% ",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
 
   "memory": {
