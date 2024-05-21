@@ -179,19 +179,24 @@ alias mv="mv -i"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 go_ros() {
+
+  if [ -f "/etc/fedora-release" ]; then
+    echo "You on Fedora mate. Doing nothing!"
+  else
     export ROS_PYTHON_VERSION=3
     source /opt/ros/noetic/setup.zsh
+  fi
 }
 
 go_ros2(){
-if [ -f "/etc/fedora-release" ]; then
-  source /usr/lib64/ros2-humble/setup.zsh
-else
-     export ROS_DOMAIN_ID=42
-     export ROS_VERSION=2
-     export ROS_PYTHON_VERSION=3
+  export ROS_VERSION=2
+  export ROS_DOMAIN_ID=42
+  export ROS_PYTHON_VERSION=3
+  if [ -f "/etc/fedora-release" ]; then
+     source /usr/lib64/ros2-humble/setup.zsh
+  else
      source /opt/ros/humble/setup.zsh
-fi
+  fi
 }
 
 # add cargo stuff to path
