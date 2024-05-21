@@ -4,7 +4,7 @@
   "height": 34, // Waybar height (to be removed for auto height)
   "spacing": 0, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "mpris"],
+  "modules-left": ["hyprland/workspaces", "mpris", "hyprland/submap"],
   "modules-center": ["clock", "power-profiles-daemon"],
   "modules-right": [
     "idle_inhibitor",
@@ -30,6 +30,13 @@
       "power-saver": "",
     },
   },
+
+  "hyprland/submap": {
+    "format": "{}",
+    "max-length": 30,
+    "tooltip": false,
+  },
+
   "mpris": {
     "format": "{player_icon} {artist} - {title}",
     "format-paused": "{status_icon} {artist} - {title}",
