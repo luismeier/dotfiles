@@ -136,6 +136,16 @@ button:hover {
   margin-right: 0;
 }
 
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+/* #power-profiles-daemon.balanced { */
+/*   color: @blue; */
+/* } */
+#power-profiles-daemon.performance {
+  color: @red;
+}
+
 #cpu {
   border-radius: 10px 0px 0px 10px;
   margin-right: 0px;
