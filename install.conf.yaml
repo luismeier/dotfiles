@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ["~", "~/.config"]
 
 - link:
     ~/.bash_profile: bash_profile
@@ -13,16 +13,15 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.xinitrc: xinitrc
     ~/.config/:
-        glob: true
-        path: config/*
+      glob: true
+      path: config/*
 
 - shell:
-    - git submodule update --init --recursive
-    - chsh -s $(which zsh)
+    - chsh -s /bin/zsh
 
 - flatpak:
-  - Bitwarden
-  - Logseq
-  - Spotify
-  - Signal 
-  - Zotero
+    - Bitwarden
+    - Logseq
+    - Spotify
+    - org.signal.Signal
+    - Zotero
