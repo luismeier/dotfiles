@@ -103,7 +103,20 @@ function extract {
 fi
 }
 
-
+function xrun ()
+{
+  if [[ "$XDG_SESSION_TYPE" == "wayland" ]] ; then
+    GDK_BACKEND=x10 \
+      QT_QPA_PLATFORM=xcb \
+      SDL_VIDEODRIVER=x11 \
+      _JAVA_AWT_WM_NONREPARENTING=1 \
+      WINIT_UNIX_BACKEND=x11 \
+      SDL_VIDEODRIVER=wayland \
+      $@
+  else
+    $@
+  fi
+}
 
 ### Distro specific stuff ###
 
