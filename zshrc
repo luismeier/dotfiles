@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-
 #      _     _
 #  _  | \   / |  Luis Meier
 # | | |  \_/  |  https://github.com/luismeier
@@ -24,6 +16,11 @@ compinit
 
 # Hist settings
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+source <(fzf --zsh)
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
 # Set editors
 export EDITOR='nvim'
@@ -48,8 +45,6 @@ antigen bundle wting/autojump
 antigen bundle command-not-found
 # Load the theme.
 #antigen theme robbyrussell
-antigen theme romkatv/powerlevel10k
-
 # Tell Antigen that you're done.
 antigen apply
 
@@ -175,11 +170,8 @@ alias cp="cp -i"
 alias mv="mv -i"
 # alias rm="rm -i"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 go_ros() {
-
   if [ -f "/etc/fedora-release" ]; then
     echo "You on Fedora mate. Doing nothing!"
   else
@@ -203,4 +195,4 @@ go_ros2(){
 export PATH="$PATH:/home/luism/.cargo/bin"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
