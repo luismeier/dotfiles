@@ -4,8 +4,15 @@
   //"height": 34, // Waybar height (to be removed for auto height)
   "spacing": 0, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "mpris", "hyprland/submap"],
-  "modules-center": ["clock"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "mpris",
+    "hyprland/submap"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/nvid"
+  ],
   "modules-right": [
     "power-profiles-daemon",
     "idle_inhibitor",
@@ -19,7 +26,6 @@
     "battery",
     "tray",
   ],
-
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -31,13 +37,11 @@
       "power-saver": "",
     },
   },
-
   "hyprland/submap": {
     "format": "{}",
     "max-length": 30,
     "tooltip": false,
   },
-
   "mpris": {
     "format": "{player_icon} {artist} - {title}",
     "format-paused": "{status_icon} {artist} - {title}",
@@ -49,9 +53,10 @@
     "status-icons": {
       "paused": "",
     },
-    "ignored-players": ["firefox"],
+    "ignored-players": [
+      "firefox"
+    ],
   },
-
   "hyprland/workspaces": {
     "disable-scroll": true,
     "show-special": true,
@@ -86,16 +91,13 @@
     //  "10": [],
     //},
   },
-
   "hyprland/language": {
     "format": "{short}",
   },
-
   "hyprland/window": {
     "format": "{class}",
     "separate-outputs": true,
   },
-
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -103,12 +105,10 @@
       "deactivated": " ",
     },
   },
-
   "tray": {
     // "icon-size": 21,
     "spacing": 10,
   },
-
   "clock": {
     // for a doc on how to format this:
     // https://howardhinnant.github.io/date/date.html#to_stream_formatting
@@ -136,7 +136,6 @@
       "on-scroll-down": "shift_up",
     },
   },
-
   "cpu": {
     "format": "{usage}% ",
     //"format": "{usage}<span font_family='Material Icons'></span>",
@@ -145,27 +144,36 @@
     // "format": "{icon} {usage:>2}% ",
     // "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
-
   "memory": {
     "format": "{}% \uefc5",
     //"format": "{}%<span font_desc='material-design-icons'>memory</span>",
   },
-
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""],
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
   },
-
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
   },
-
   "battery": {
     "states": {
       "good": 95,
@@ -179,11 +187,16 @@
     "full-at": "96",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip": true,
     "tooltip-format": "{timeTo}\nPWR:{power}W",
   },
-
   "network": {
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
@@ -193,10 +206,15 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "format-disconnected": "󰖪",
   },
-
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "󰂰 {volume}",
@@ -205,9 +223,18 @@
     "format-muted": "󰝟",
     "format-icons": {
       "headphone": "",
-      "default": ["󰖀", "󰕾", ""],
+      "default": [
+        "󰖀",
+        "󰕾",
+        ""
+      ],
     },
     "on-click": "pavucontrol",
     "scroll-step": 1,
   },
+  "custom/nvid": {
+    "format": "Nvidia: {}",
+    "exec": "supergfxctl -S",
+    "interval": 1,
+  }
 }
