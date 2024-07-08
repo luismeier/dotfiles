@@ -11,7 +11,8 @@ draw_bold_text_with_bright_colors = true
 size = 11.0
 
 [font.bold]
-family = "SourceCodePro"
+# family = "SourceCodePro"
+family = "FiraCode"
 style = "Bold"
 
 [font.glyph_offset]
@@ -19,11 +20,13 @@ x = 0
 y = 0
 
 [font.italic]
-family = "SourceCodePro"
+# family = "SourceCodePro"
+family = "FiraCode"
 style = "Italic"
 
 [font.normal]
-family = "SourceCodePro"
+family = "FiraCode"
+# family = "SourceCodePro"
 style = "Regular"
 
 [font.offset]

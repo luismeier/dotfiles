@@ -5,7 +5,14 @@
 # | |_|_|_  |_|
 # |_______|
 # My zsh config
+#
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/luism/.zshrc'
@@ -43,7 +50,9 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle wting/autojump
 # antigen bundle marlonrichert/zsh-autocomplete@main
 antigen bundle command-not-found
+
 # Load the theme.
+antigen theme romkatv/powerlevel10k
 #antigen theme robbyrussell
 # Tell Antigen that you're done.
 antigen apply
@@ -204,8 +213,12 @@ go_ros2(){
   fi
 }
 
+# Load p10k config
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # add cargo stuff to path
 export PATH="$PATH:/home/luism/.cargo/bin"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
+# eval "$(starship init zsh)"
