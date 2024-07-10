@@ -23,7 +23,7 @@ compinit
 
 # Hist settings
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-source <(fzf --zsh)
+# source <(fzf --zsh)
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -31,7 +31,8 @@ setopt appendhistory
 
 # Set editors
 export EDITOR='nvim'
-export VISUAL='code'
+export VISUAL='nvim'
+# export VISUAL='code'
 
 # Load antigen
 source ~/dotfiles/antigen.zsh
