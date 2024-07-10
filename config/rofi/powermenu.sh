@@ -1,21 +1,21 @@
 #!/bin/bash
 
-entries="⇠ Logout\n⏾ Suspend\n⭮ Reboot\n⏻ Shutdown"
+entries="⇠\tLogout\n⏾\tSuspend\n⭮\tReboot\n⏻\tShutdown"
 
-selected=$(echo -e $entries | rofi -dmenu | awk '{print tolower($2)}')
+selected=$(echo -e $entries | rofi -dmenu -i | awk '{print tolower($2)}')
 
 case $selected in
 logout)
-	hyprctl dispatch exit
-	;;
+  hyprctl dispatch exit
+  ;;
 suspend)
-	exec systemctl suspend
-	;;
+  exec systemctl suspend
+  ;;
 reboot)
-	exec systemctl reboot
-	;;
+  exec systemctl reboot
+  ;;
 shutdown)
-	exec systemctl poweroff
-	;;
-	# it used to be poweroff -i
+  exec systemctl poweroff
+  ;;
+  # it used to be poweroff -i
 esac
