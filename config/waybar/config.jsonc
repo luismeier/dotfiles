@@ -7,17 +7,20 @@
   "modules-left": ["hyprland/workspaces", "mpris", "hyprland/submap"],
   "modules-center": ["clock", "custom/nvid"],
   "modules-right": [
+    "tray",
     "power-profiles-daemon",
     "idle_inhibitor",
+    "bluetooth",
     "pulseaudio",
     "network",
-    "cpu",
-    "memory",
+    "group/hardware",
+    // "group/power",
+    // "cpu",
+    // "memory",
     "temperature",
     "backlight",
     "hyprland/language",
     "battery",
-    "tray",
   ],
   "power-profiles-daemon": {
     "format": "{icon}",
@@ -30,11 +33,25 @@
       "power-saver": "",
     },
   },
-  "hyprland/submap": {
-    "format": "{}",
-    "max-length": 30,
-    "tooltip": false,
+
+  "group/power": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 100,
+    },
+    "modules": ["battery", "power-profiles-daemon"],
   },
+
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": false,
+    },
+    "modules": ["cpu", "memory"],
+  },
+
   "mpris": {
     "format": "{player_icon} {artist} - {title}",
     "format-paused": "{status_icon} {artist} - {title}",
@@ -69,26 +86,18 @@
       "default": "",
     },
     "sort-by-number": true,
-    //"persistent-workspaces": {
-    //  "1": [],
-    //  "2": [],
-    //  "3": [],
-    //  "4": [],
-    //  // "5": [],
-    //  // "6": [],
-    //  // "7": [],
-    //  "8": [],
-    //  "9": [],
-    //  "10": [],
-    //},
   },
+
+  "hyprland/submap": {
+    "format": "{}",
+    "max-length": 30,
+    "tooltip": false,
+  },
+
   "hyprland/language": {
     "format": "{short}",
   },
-  "hyprland/window": {
-    "format": "{class}",
-    "separate-outputs": true,
-  },
+
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -96,10 +105,12 @@
       "deactivated": " ",
     },
   },
+
   "tray": {
     // "icon-size": 21,
     "spacing": 10,
   },
+
   "clock": {
     // for a doc on how to format this:
     // https://howardhinnant.github.io/date/date.html#to_stream_formatting
@@ -127,18 +138,18 @@
       "on-scroll-down": "shift_up",
     },
   },
+
   "cpu": {
-    "format": "{usage}% ",
-    //"format": "{usage}<span font_family='Material Icons'></span>",
+    "format": " {usage}%",
     "tooltip": true,
     "interval": 2,
-    // "format": "{icon} {usage:>2}% ",
-    // "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
+
   "memory": {
-    "format": "{}% \uefc5",
-    //"format": "{}%<span font_desc='material-design-icons'>memory</span>",
+    // "format": "{}% \uefc5",
+    "format": " {}%",
   },
+
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -147,11 +158,13 @@
     "format": "{temperatureC}°C {icon}",
     "format-icons": ["", "", ""],
   },
+
   "backlight": {
     // "device": "acpi_video1",
     "format": "{percent}% {icon}",
     "format-icons": ["", "", "", "", "", "", "", ""],
   },
+
   "battery": {
     "states": {
       "good": 95,
@@ -165,10 +178,11 @@
     "full-at": "96",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [" ", " ", " ", " ", " "],
     "tooltip": true,
     "tooltip-format": "{timeTo}\nPWR:{power}W",
   },
+
   "network": {
     "format-wifi": "{icon}",
     "format-ethernet": "󰀂",
@@ -176,11 +190,11 @@
     "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    // "format-alt": "{ifname}: {ipaddr}/{cidr}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-disconnected": "󰖪",
   },
+
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "󰂰 {volume}",
@@ -192,11 +206,29 @@
       "default": ["󰖀", "󰕾", ""],
     },
     "on-click": "pavucontrol",
+    "on-click-middle": "volume mute",
     "scroll-step": 1,
+    "input": true,
   },
+
   "custom/nvid": {
     "format": "Nvidia: {}",
     "exec": "supergfxctl -S",
     "interval": 10,
+  },
+
+  "bluetooth": {
+    "on-click": "$HOME/dotfiles/config/waybar/scripts/bluetooth-control",
+    "on-click-right": "$HOME/dotfiles/config/waybar/scripts/rofi-bluetooth",
+    "on-click-middle": "$HOME/dotfiles/waybar/scripts/rofi-bluetooth",
+    "format": "{icon}",
+    "interval": 15,
+    "format-icons": {
+      "on": "",
+      "off": "󰂲",
+      "disabled": "󰂲",
+      "connected": "",
+    },
+    "tooltip-format": "{device_alias} {status}",
   },
 }
