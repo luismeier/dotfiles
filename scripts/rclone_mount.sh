@@ -13,8 +13,8 @@ function ask_mount {
     ;;
   [Aa]*)
     echo "Mounting both"
-    rclone mount OST-SharePoint: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --vfs-cache-mode full --ignore-checksum --ignore-size --daemon
-    rclone mount OST-OneDrive: /home/luism/OST-OneDrive/personal --poll-interval 0m1s --vfs-cache-mode full --daemon
+    rclone mount OST-TeamDejan: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --vfs-cache-mode full --ignore-checksum --ignore-size --daemon
+    rclone mount OST-Personal: /home/luism/OST-OneDrive/personal --poll-interval 0m1s --vfs-cache-mode full --daemon
     exit
     ;;
   [Qq]*) ;;
