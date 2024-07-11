@@ -3,8 +3,9 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   /*font-family: "JetBrainsMono Nerd Font";*/
-  font-family: "Ubuntu Nerd Font";
-  font-size: 14px;
+  /*font-family: "Ubuntu Nerd Font";*/
+  font-family: "FiraCode Nerd Font";
+  font-size: 12px;
   /*font-weight: bold;*/
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -150,17 +151,18 @@ button:hover {
 }
 
 #cpu {
-  border-radius: 10px 0px 0px 10px;
-  margin-right: 0px;
-  padding-left: 10px;
-  padding-right: 1px;
+  border-radius: 8px 8px 0px 0px;
+  /*margin-right: 0px;*/
+  /*padding-left: 10px;*/
+  /*padding-right: 1px;*/
 }
 
 #memory {
-  border-radius: 0px 10px 10px 0px;
-  margin-left: 0px;
-  padding-left: 1px;
-  padding-right: 10px;
+  /*border-radius: 0px 10px 10px 0px;*/
+  border-radius: 0px 0px 8px 8px;
+  /*margin-left: 0px;*/
+  /*padding-left: 1px;*/
+  /*padding-right: 10px;*/
 }
 
 #tray {
