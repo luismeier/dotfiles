@@ -8,6 +8,10 @@ return {
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
         "tsx",
+        "bash",
+        "python",
+        "cpp",
+        "lua",
         "typescript",
         "yaml",
       })
