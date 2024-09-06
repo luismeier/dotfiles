@@ -2,11 +2,11 @@
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  /*font-family: "JetBrainsMono Nerd Font";*/
+  font-family: "JetBrainsMono Nerd Font";
   /*font-family: "Ubuntu Nerd Font";*/
-  font-family: "FiraCode Nerd Font";
+  /*font-family: "FiraCode Nerd Font";*/
   font-size: 12px;
-  /*font-weight: bold;*/
+  font-weight: bold;
   transition-property: background-color;
   transition-duration: 0.5s;
   min-height: 15px;
@@ -103,10 +103,7 @@ button:hover {
 
 #clock,
 #battery,
-#cpu,
-#memory,
 #disk,
-#temperature,
 #backlight,
 #network,
 #pulseaudio,
@@ -124,6 +121,8 @@ button:hover {
 #submap,
 #custom-nvid,
 #bluetooth,
+#power,
+#hardware,
 /* #workspaces, */ 
 #mpd {
   /*margin-top: 2px;*/
@@ -139,6 +138,17 @@ button:hover {
   color: @text;
   border-style: solid;
   border-color: @overlay1;
+}
+
+#memory,
+#cpu,
+#temperature{
+  /*background: #ff0000;*/
+   margin-left: 2px;
+  margin-right: 2px;
+  /*padding-left: 8px;*/
+  /*padding-right: 8px;*/
+
 }
 
 #power-profiles-daemon.power-saver {
@@ -160,7 +170,7 @@ button:hover {
 
 #memory {
   /*border-radius: 0px 10px 10px 0px;*/
-  border-radius: 0px 0px 8px 8px;
+  /*border-radius: 0px 0px 8px 8px;*/
   /*margin-left: 0px;*/
   /*padding-left: 1px;*/
   /*padding-right: 10px;*/
@@ -193,7 +203,7 @@ button:hover {
 
 @keyframes warn {
   to {
-    color: @yellow;
+    background-color: @yellow;
   }
 }
 
@@ -207,7 +217,6 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-  background-color: #383c4a;
   color: @text;
   animation-name: blink;
   animation-duration: 2s;
