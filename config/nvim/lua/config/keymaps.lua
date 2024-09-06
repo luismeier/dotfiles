@@ -15,4 +15,4 @@
 --   desc = "Toggle comment for selection",
 -- }
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("n", "gds", ":vsplit| lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in new split" })
+-- vim.keymap.set("n", "gds", ":vsplit| lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in new split" })
