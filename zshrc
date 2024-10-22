@@ -7,64 +7,56 @@
 # My zsh config
 #
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+
+# Download antidote plugin mgr if it not exists
+if [ ! -d "${ZDOTDIR:-$HOME}/.antidote" ];then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
 fi
 
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/luism/.zshrc'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+antidote load
 
-# Hist settings
+# Load completions
+autoload -Uz compinit && compinit
+autoload -Uz promptinit && promptinit && prompt pure
+
+# History
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-# source <(fzf --zsh)
+HISTSIZE=5000
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
+SAVEHIST=$HISTSIZE
+HISTDUP=erase # remove duplicates from history
+# setopt appendhistory
+setopt SHARE_HISTORY
+# setopt INC_APPEND_HISTORY # Push command to hist before exec
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+# Keybindiings
+# bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 
 # Set editors
 export EDITOR='nvim'
 export VISUAL='nvim'
 # export VISUAL='code'
-
-# Load antigen
-source ~/dotfiles/antigen.zsh
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Load plugins
-antigen bundle navi
-# antigen bundle diff-so-fancy
-if [ -x "$(command -v fzf)" ]; then
-    antigen bundle fzf
-fi
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle wting/autojump
-# antigen bundle marlonrichert/zsh-autocomplete@main
-antigen bundle command-not-found
-
-# Load the theme.
-antigen theme romkatv/powerlevel10k
-#antigen theme robbyrussell
-# Tell Antigen that you're done.
-antigen apply
-
-## Docker stuff
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-
-#
-# git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-# git config --global interactive.diffFilter "diff-so-fancy --patch"
 
 ### PATH
 if [ -d "$HOME/.bin" ] ;
@@ -75,58 +67,6 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-### FUNCTIONS ###
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
-}
-
-function xrun ()
-{
-  if [[ "$XDG_SESSION_TYPE" == "wayland" ]] ; then
-    GDK_BACKEND=x10 \
-      QT_QPA_PLATFORM=xcb \
-      SDL_VIDEODRIVER=x11 \
-      _JAVA_AWT_WM_NONREPARENTING=1 \
-      WINIT_UNIX_BACKEND=x11 \
-      SDL_VIDEODRIVER=wayland \
-      $@
-  else
-    $@
-  fi
-}
 
 ### Distro specific stuff ###
 
@@ -159,6 +99,7 @@ if [ -x "$(command -v eza)" ]; then
   alias la='eza -la --icons'
   alias lf='eza -a --icons'
 else
+  echo "Exa not available"
   alias ll='ls -alF --color=auto'
   alias la='ls -A --color=auto'
   alias l='ls -CF --color=auto'
@@ -170,6 +111,13 @@ fi
 #if [ -x "$(command -v bat)" ]; then
 # alias cat='bat'
 #fi
+
+# Some movement alias
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Git aliases
 alias gs="git status"
@@ -192,34 +140,32 @@ alias pls='sudo "$BASH" -c "$(history -p !!)"'
 alias cp="cp -i"
 alias mv="mv -i"
 # alias rm="rm -i"
+#
 
-
-go_ros() {
-  if [ -f "/etc/fedora-release" ]; then
-    echo "You on Fedora mate. Doing nothing!"
-  else
-    export ROS_PYTHON_VERSION=3
-    source /opt/ros/noetic/setup.zsh
-  fi
-}
-
-go_ros2(){
-  export ROS_VERSION=2
-  export ROS_DOMAIN_ID=42
-  export ROS_PYTHON_VERSION=3
-  if [ -f "/etc/fedora-release" ]; then
-     source /usr/lib64/ros2-humble/setup.zsh
-  else
-     source /opt/ros/humble/setup.zsh
-  fi
-}
-
-# Load p10k config
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # add cargo stuff to path
 export PATH="$PATH:/home/luism/.cargo/bin"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
-eval "$(direnv hook zsh)"
-# eval "$(starship init zsh)"
+
+# add my scripts
+source /home/luism/dotfiles/scripts.zsh
+
+if [ -x "$(command -v direnv)" ]; then
+  eval "$(direnv hook zsh)"
+else
+  echo "direnv not available"
+fi
+# Shell integrations
+if [ -x "$(command -v fzf)" ]; then
+  eval "$(fzf --zsh)"
+else
+  echo "fzf not available"
+fi
+if [ -x "$(command -v zoxide)" ]; then
+  eval "$(zoxide init zsh)"
+  alias cd="z" # this must be after the eval function
+else
+  echo "Zoxide not available"
+fi
+
