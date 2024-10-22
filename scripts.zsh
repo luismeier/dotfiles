@@ -11,7 +11,7 @@ function go_ros() {
 function go_ros2() 
 {
   export ROS_VERSION=2
-  export ROS_DOMAIN_ID=42
+  # export ROS_DOMAIN_ID=42
   export ROS_PYTHON_VERSION=3
   if [ -f "./install/setup.zsh" ]; then
     echo "There is a local install sourcing it"
