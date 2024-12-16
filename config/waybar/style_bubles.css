@@ -6,10 +6,10 @@
   /*font-family: "Ubuntu Nerd Font";*/
   /*font-family: "FiraCode Nerd Font";*/
   font-size: 12px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   transition-property: background-color;
   transition-duration: 0.5s;
-  min-height: 15px;
+  min-height: 12px;
 }
 
 window > box {
@@ -20,7 +20,7 @@ window > box {
 }
 window#waybar {
   /*background-color: shade(@base, 0.1);*/
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.5);
   /*background-color: transparent;*/
 }
 

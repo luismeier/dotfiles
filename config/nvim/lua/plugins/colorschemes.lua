@@ -1,20 +1,20 @@
 return {
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    -- config = function()
+    --   require("catppuccin").setup({
+    --     no_italic = false,
+    --     styles = { -- handles the styles of general hi groups (see `:h highlight-args`):
+    --       comments = { "italic" }, -- change the style of comments
+    --       conditionals = { "italic" },
+    --     },
+    --   })
+    -- end,
+  },
   -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   -- config = function()
-  --   --   require("catppuccin").setup({
-  --   --     no_italic = false,
-  --   --     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-  --   --       comments = { "italic" }, -- Change the style of comments
-  --   --       conditionals = { "italic" },
-  --   --     },
-  --   --   })
-  --   -- end,
-  -- },
-  -- {
-  --   "EdenEast/nightfox.nvim",
+  --   "edeneast/nightfox.nvim",
   --   priority = 1000,
   --   -- config = function()
   --   --   require("nightfox").setup({
