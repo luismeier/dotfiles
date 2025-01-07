@@ -95,10 +95,10 @@
       "9": "  ",
       "10": " ",
       "urgent": "",
-      "active": "",
+      // "active": "",
       "default": "",
     },
-    "sort-by-number": false,
+    "sort-by-number": false
   },
   "hyprland/submap": {
     "format": "{}",
@@ -126,7 +126,7 @@
     // "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "tooltip-format": "<tt>{calendar}</tt>",
     "format-alt": "{:%Y-%m-%d}",
-    "format": "{:%a, %d %b, %H:%M %p}",
+    "format": "{:%a, %d %b - %H:%M}",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
