@@ -56,10 +56,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
-bindkey  "^[[3~"  delete-char
-
+# Ctrl-Space to accept
+bindkey '^ ' autosuggest-accept
 # Set editors
 export EDITOR='nvim'
 export VISUAL='nvim'
