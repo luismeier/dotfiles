@@ -17,3 +17,5 @@ vim.opt.scrolloff = 10
 vim.opt.showcmd = true
 
 vim.opt.ignorecase = true
+
+vim.g.snacks_animate = false
