@@ -1,11 +1,12 @@
 @import "macchiato.css";
 
 * {
-  font-family: "FiraCode Nerd Font";
-  font-size: 13px;
+  font-family: "JetBrainsMono Nerd Font", "Fira Code Nerd Font", "sans-serif";
+  /*font-family: "FiraCode Nerd Font";*/
+  font-size: 12px;
   transition-property: background-color;
   transition-duration: 0.5s;
-  min-height: 12px;
+  /*min-height: 10px;*/
 }
 
 window > box {
@@ -38,7 +39,7 @@ button:hover {
 }
 
 #workspaces {
-  border-radius: 10px;
+  border-radius: 4px;
   background: @base;
   padding-right: 0;
 }
@@ -46,7 +47,7 @@ button:hover {
 #workspaces button {
   color: @text;
   transition: none;
-  border-radius: 10px;
+  border-radius: 4px;
   min-width: 10px;
 }
 
@@ -55,7 +56,8 @@ button:hover {
 }
 
 #workspaces button.empty {
-  color: #ff00ff;
+  color: @text;
+  /*background: @crust;*/
 }
 
 #workspaces button:hover {
@@ -100,7 +102,7 @@ button:hover {
 #mpd {
   margin: 0 2px;
   padding: 0 8px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: @base;
   color: @text;
   border: solid @overlay1;
