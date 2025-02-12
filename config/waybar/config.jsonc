@@ -247,9 +247,8 @@
     "interval": 10,
   },
   "bluetooth": {
-    "on-click": "$HOME/dotfiles/config/waybar/scripts/bluetooth-control",
-    "on-click-right": "$HOME/dotfiles/config/waybar/scripts/rofi-bluetooth",
-    "on-click-middle": "$HOME/dotfiles/waybar/scripts/rofi-bluetooth",
+    "on-click-right": "$HOME/dotfiles/config/waybar/scripts/bluetooth-control",
+    "on-click": "$HOME/dotfiles/config/waybar/scripts/rofi-bluetooth",
     "format": "{icon}",
     "interval": 15,
     "format-icons": {

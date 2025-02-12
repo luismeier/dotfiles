@@ -73,7 +73,7 @@ button:hover {
 }
 
 #workspaces button.active {
-  background: @blue;
+  background: @sapphire;
   color: @text;
 }
 
@@ -128,14 +128,23 @@ button:hover {
 }
 
 @keyframes blink {
+    from {
+    color: @overlay0;
+    background-color: @yellow;
+  }
   to {
     background-color: @red;
   }
 }
 
 @keyframes warn {
-  to {
+  from {
+    color: @overlay0;
     background-color: @yellow;
+  }
+  to {
+    background-color: @peach;
+    color: @overlay0;
   }
 }
 
