@@ -1,0 +1,13 @@
+# Auto place all unknown monitors right
+monitor = , preferred, auto, 1
+
+# Integrated display
+monitor=desc:LG Display 0x06AA,3840x2400@60.0,5120x240,2.0,bitdepth,10
+
+# Home config
+monitor=desc:Ancor Communications Inc ASUS MG279 0x0000FCE6,2560x1440@59.95,0x0,1.0
+monitor=desc:Ancor Communications Inc ASUS MG279 0x00023E15,2560x1440@59.95,2560x0,1.0
+
+# Work config
+monitor=desc:Dell Inc. DELL U2722DE 4HZ22P3,2560x1440@59.95,2560x0,1.0
+monitor=desc:Dell Inc. DELL U2722DE 6TGK6P3,2560x1440@59.95,0x0,1.0
