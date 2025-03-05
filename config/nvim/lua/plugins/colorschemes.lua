@@ -4,13 +4,18 @@ return {
     name = "catppuccin",
     priority = 1000,
     -- config = function()
-    --   require("catppuccin").setup({
-    --     no_italic = false,
-    --     styles = { -- handles the styles of general hi groups (see `:h highlight-args`):
-    --       comments = { "italic" }, -- change the style of comments
-    --       conditionals = { "italic" },
-    --     },
-    --   })
+    require("catppuccin").setup({
+      custom_highlights = function(colors)
+        return {
+          WinSeparator = { fg = colors.pink },
+        }
+      end,
+      --     no_italic = false,
+      --     styles = { -- handles the styles of general hi groups (see `:h highlight-args`):
+      --       comments = { "italic" }, -- change the style of comments
+      --       conditionals = { "italic" },
+      -- },
+    }),
     -- end,
   },
   -- {
@@ -35,4 +40,5 @@ return {
     "navarasu/onedark.nvim",
     priority = 1000,
   },
+  { "EdenEast/nightfox.nvim" },
 }
