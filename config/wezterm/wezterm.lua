@@ -7,8 +7,10 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
--- config.color_scheme = "Tokyo Night"
+config.color_scheme = "Tokyo Night"
 config.color_scheme = "catppuccin-macchiato"
+config.color_scheme_dirs = { "/home/luism/.config/wezterm/colors" }
+config.color_scheme = "nightfox"
 
 -- config.font = wezterm.font("Fira Code NerdFont mono")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
