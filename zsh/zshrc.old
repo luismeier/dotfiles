@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-#      _     _
 #  _  | \   / |  Luis Meier
 # | | |  \_/  |  https://github.com/luismeier
 # | | | |\_/| |  https://luismeier.ch
@@ -23,25 +15,13 @@ fi
 source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
 antidote load
 
+export MYZSH=$HOME/dotfiles/zsh/
+source $MYZSH/config.zsh
+source $MYZSH/aliases.zsh
+
 # Load completions
 autoload -Uz compinit && compinit
 autoload -Uz promptinit && promptinit
-# prompt pure
-
-# History
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase # remove duplicates from history
-# setopt appendhistory
-setopt SHARE_HISTORY
-# setopt INC_APPEND_HISTORY # Push command to hist before exec
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -94,67 +74,22 @@ if [ -f "/etc/fedora-release" ]; then
 fi
 
 
-### ALIASES ###
-alias v="nvim"
-
-## Replace ls with exa if available
-if [ -x "$(command -v eza)" ]; then
-  alias ls='eza --icons'
-  alias ll='eza -ghl --icons'
-  alias la='eza -la --icons'
-  alias lf='eza -a --icons'
-else
-  echo "Exa not available"
-  alias ll='ls -alF --color=auto'
-  alias la='ls -A --color=auto'
-  alias l='ls -CF --color=auto'
-  alias dir='dir --color=auto'
-  alias vdir='vdir --color=auto'
-fi
-
-### Replace cat with bat
-#if [ -x "$(command -v bat)" ]; then
-# alias cat='bat'
-#fi
-
-# Some movement alias
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-
-# Git aliases
-alias gs="git status"
-alias gc="git commit"
-alias lg="lazygit"
-
-# Colorize grep output
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-# Adding flags to commands
-alias df="df -h"      # Human readable
-alias free="free -m"  # Free in MB
-
-# sudo !! alias
-alias pls='sudo "$BASH" -c "$(history -p !!)"'
-
-# Confirm before overwriting things
-alias cp="cp -i"
-alias mv="mv -i"
-# alias rm="rm -i"
-#
-
 
 # add cargo stuff to path
 export PATH="$PATH:/home/luism/.cargo/bin"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
 
 # add my scripts
-source /home/luism/dotfiles/scripts.zsh
+setopt nullglob
+for file in "$HOME/dotfiles/zsh_scripts/"*.zsh; do
+  [ -f "$file" ] || continue
+  source "$file"
+done
+
+for file in "$HOME/dotfiles/zsh_scripts/"*.bash; do
+  [ -f "$file" ] || continue
+  source "$file"
+done
+setopt globdots
 
 if [ -x "$(command -v direnv)" ]; then
   eval "$(direnv hook zsh)"
@@ -174,10 +109,6 @@ else
   echo "Zoxide not available"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 # bun completions
 [ -s "/home/luism/.bun/_bun" ] && source "/home/luism/.bun/_bun"
 
@@ -186,4 +117,5 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

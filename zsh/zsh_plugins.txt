@@ -11,8 +11,8 @@ ohmyzsh/ohmyzsh path:plugins/magic-enter
 # prompts:
 #   with prompt plugins, remember to add this to your .zshrc:
 #   `autoload -Uz promptinit && promptinit && prompt pure`
-# sindresorhus/pure     kind:fpath
-romkatv/powerlevel10k
+sindresorhus/pure     kind:fpath
+# romkatv/powerlevel10k
 
 # popular fish-like plugins
 mattmc3/zfunctions
