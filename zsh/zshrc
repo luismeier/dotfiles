@@ -26,6 +26,12 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
+zinit snippet OMZP::sudo
+zinit snippet OMZP::alias-finder
+
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q # recomended by doc, allows to reaplay cached cd's
@@ -43,6 +49,16 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # add colors
 zstyle ':completion:*' menu no # disable default zsh menu, allows fzf menu
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Allow for option stacking in docker based commands
+zstyle ':completion:*:*:docker:*:*' option-stacking yes
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 
 # Keybindings

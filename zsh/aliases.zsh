@@ -23,14 +23,12 @@ if [ -f "/etc/fedora-release" ]; then
   alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
 fi
 
-
-
 # Some movement alias
 alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
+# alias ...='cd ../..'
+# alias ....='cd ../../..'
+# alias .....='cd ../../../..'
+# alias ......='cd ../../../../..'
 
 # Git aliases
 alias gs="git status"
@@ -39,15 +37,10 @@ alias lg="lazygit"
 
 # Colorize grep output
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 # Adding flags to commands
 alias df="df -h"      # Human readable
 alias free="free -m"  # Free in MB
-
-# sudo !! alias
-alias pls='sudo "$BASH" -c "$(history -p !!)"'
 
 # Confirm before overwriting things
 alias cp="cp -i"
