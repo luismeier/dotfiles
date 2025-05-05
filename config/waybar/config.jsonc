@@ -69,13 +69,19 @@
     "player-icons": {
       "default": "",
       "spotifyd": "",
-      "spotify": "",
+      "spotify": ""
     },
     "status-icons": {
-      "paused": "",
+      "paused": ""
     },
+    "artist-len": 10,
+    "album-len": 10,
+    "title-len": 20,
+    "dynamic-len": 40,
+    // "max-length": 30,
     "ignored-players": [
-      "firefox"
+      "firefox",
+      "org.mozilla.firefox"
     ],
   },
   "hyprland/workspaces": {
@@ -96,7 +102,7 @@
       "10": " ",
       "urgent": "",
       // "active": "",
-      "default": "",
+      "default": ""
     },
     "sort-by-number": false
   },
