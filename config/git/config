@@ -1,15 +1,22 @@
+[init]
+  defaultBranch = main
+
 [user]
 	email = luis.meier@ost.ch
 	name = Luis Meier
+
 [core]
 	editor = nvim
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
 [alias]
 	co = checkout
+  st = status
 
 [status]
   branch = true
