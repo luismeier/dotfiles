@@ -40,8 +40,12 @@ zinit cdreplay -q # recomended by doc, allows to reaplay cached cd's
 export MYZSH=$HOME/dotfiles/zsh/
 source $MYZSH/config.zsh
 source $MYZSH/aliases.zsh
-source $MYZSH/scripts.zsh
+source $MYZSH/scripts.zsh # Sources everything in the zsh_scripts folder
 
+# Home, End and Delete keys
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # ignore case
