@@ -38,16 +38,6 @@ return {
     config = true,
   },
 
-  -- override nvim-cmp and add cmp-emoji
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-    end,
-  },
-
   -- change some telescope options and a keymap to browse plugin files
   {
     "nvim-telescope/telescope.nvim",
@@ -68,18 +58,6 @@ return {
         sorting_strategy = "ascending",
         winblend = 0,
       },
-    },
-  },
-
-  -- add telescope-fzf-native
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
     },
   },
 
@@ -191,12 +169,6 @@ return {
       }
     end,
   },
-
-  -- use mini.starter instead of alpha
-  { import = "lazyvim.plugins.extras.ui.mini-starter" },
-
-  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
 
   -- add any tools you want to have installed below
   {

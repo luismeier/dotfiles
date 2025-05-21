@@ -5,6 +5,7 @@ return {
       -- colorscheme = { "catppuccin" },
       -- colorscheme = { "onedark" },
       colorscheme = { "nightfox" },
+      -- colorscheme = { "nordfox" },
     },
   },
 

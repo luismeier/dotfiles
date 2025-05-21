@@ -15,9 +15,7 @@
 --   desc = "Toggle comment for selection",
 -- }
 vim.keymap.set("i", "jj", "<Esc>")
--- vim.keymap.set("n", "gds", ":vsplit| lua vim.lsp.buf.definition()<CR>", { desc = "Open definition in new split" })
---
---
+
 -- these keep the cursor in the middle when scrolling with ctrl d and u
 -- from https://github.com/ThePrimeagen/init.lua
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
