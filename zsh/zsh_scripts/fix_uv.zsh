@@ -1,3 +1,7 @@
+if ! type uv > /dev/null; then
+  echo "No uv"
+  return
+fi
 eval "$(uv generate-shell-completion zsh)"
 
 _uv_run_mod() {

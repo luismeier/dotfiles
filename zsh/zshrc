@@ -16,7 +16,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; 
 
 # Add in zsh plugins
-zinit light romkatv/powerlevel10k
+# zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -27,6 +27,11 @@ zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::sudo
 # zinit snippet OMZP::alias-finder
+#
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -78,7 +83,9 @@ export MANPAGER="nvim -c 'Man!'"
 
 ## Shell integration
 eval "$(fzf --zsh)"
+
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
 # eval "$(uv --generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
+eval "$(starship init zsh)"
