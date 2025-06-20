@@ -1,9 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+
 
 # Set the directory we want to store zinit and plugins, download if not available 
 # and then source it
@@ -26,8 +21,8 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::sudo
-# zinit snippet OMZP::alias-finder
-#
+
+
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
@@ -35,6 +30,7 @@ zinit light starship/starship
 
 # Load completions
 autoload -Uz compinit && compinit
+autoload -Uz promptinit && promptinit
 zinit cdreplay -q # recomended by doc, allows to reaplay cached cd's
 
 # Load my custom stuff
@@ -60,15 +56,10 @@ zstyle ':completion:*:*:docker:*:*' option-stacking yes
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
-zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
-zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
-
-
 # Keybindings
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+
 # Ctrl-Space to accept
 bindkey '^ ' autosuggest-accept
 
@@ -77,15 +68,10 @@ export EDITOR="nvim"
 export visual="nvim"
 export MANPAGER="nvim -c 'Man!'"
 
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-## Shell integration
+## Shell integrations
 eval "$(fzf --zsh)"
-
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
-# eval "$(uv --generate-shell-completion zsh)"
+eval "$(uv --generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 eval "$(starship init zsh)"

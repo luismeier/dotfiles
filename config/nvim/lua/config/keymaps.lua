@@ -24,3 +24,12 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- and these are for searching
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+-- tab keymaps
+vim.keymap.set("n", "<leader><tab>N", ":tabnew<cr>", { desc = "New tab" })
+vim.keymap.set("n", "<leader><tab>n", ":tabnext<cr>", { desc = "Next tab" })
+vim.keymap.set("n", "<leader><tab>p", ":tabprevious<cr>", { desc = "Next tab" })
+vim.keymap.set("n", "<leader><tab><tab>", ":tabprevious<cr>", { desc = "Switch to last tab" })
+
+-- Keymaps to show documentation
+vim.keymap.set("n", "<leader>?", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "Show documentation" })

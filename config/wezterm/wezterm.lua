@@ -10,11 +10,12 @@ local config = wezterm.config_builder()
 config.color_scheme_dirs = { "/home/luism/.config/wezterm/colors" }
 -- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "catppuccin-macchiato"
-config.color_scheme = "nightfox"
+config.color_scheme = "nordfox"
+-- config.color_scheme = "nightfox"
 
 -- config.font = wezterm.font("Fira Code NerdFont mono")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 12
+config.font_size = 11
 
 config.enable_tab_bar = false
 

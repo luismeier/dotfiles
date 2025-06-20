@@ -3,8 +3,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = { "catppuccin" },
-      -- colorscheme = { "onedark" },
-      colorscheme = { "nightfox" },
+      -- colorscheme = { "nightfox" },
       -- colorscheme = { "nordfox" },
     },
   },
@@ -16,7 +15,7 @@ return {
   --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   -- },
-
+  --
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   --   {

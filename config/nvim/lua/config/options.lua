@@ -20,4 +20,5 @@ vim.opt.ignorecase = true
 
 vim.g.snacks_animate = false
 -- this prevents crashing with weird folds
-vim.opt.foldmethod = "manual"
+-- vim.opt.foldmethod = "manual"
+--
