@@ -11,10 +11,10 @@
   ],
   "modules-center": [
     "clock",
-    "custom/nvid"
   ],
   "modules-right": [
     "tray",
+    "custom/nvid",
     "power-profiles-daemon",
     "idle_inhibitor",
     "bluetooth",
@@ -248,9 +248,11 @@
     "input": true,
   },
   "custom/nvid": {
-    "format": "Nvidia: {}",
-    "exec": "supergfxctl -S",
+    "exec": "$HOME/dotfiles/config/waybar/scripts/nvidia_status.sh",
+    "format": "Nv:{text}",
+    "return-type": "json",
     "interval": 10,
+    "signal": 1
   },
   "bluetooth": {
     "on-click-right": "$HOME/dotfiles/config/waybar/scripts/bluetooth-control",
