@@ -11,7 +11,7 @@
 
 window#waybar {
   background-color: @bg;
-  padding: 4px 6px;
+  padding: 4px 5px;
 }
 
 window > box {
@@ -19,7 +19,7 @@ window > box {
 }
 
 tooltip {
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 12px;
   background-color: @base;
   color: @text;
@@ -103,8 +103,8 @@ button:hover {
   background-color: @base;
   color: @text;
   border-radius: 6px;
-  padding: 2px 10px;
-  margin: 0 4px;
+  padding: 2px 5px;
+  margin: 0 0px;
 }
 
 #power-profiles-daemon.power-saver {
@@ -122,7 +122,7 @@ button:hover {
 #memory,
 #cpu,
 #temperature {
-  padding: 0 10px;
+  padding: 0 5px;
   margin: 0 2px;
   background-color: @surface;
   border-radius: 6px;
