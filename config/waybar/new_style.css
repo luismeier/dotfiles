@@ -1,0 +1,203 @@
+@import "nordfox.css";
+
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Fira Code Nerd Font", "sans-serif";
+  font-size: 13px;
+  /* transition-property: background-color; */
+  border: none;
+  /* transition: 1.0s ease; */
+}
+
+window#waybar {
+  background-color: @bg;
+  padding: 4px 6px;
+}
+
+window > box {
+  margin: 3px 5px;
+}
+
+tooltip {
+  border-radius: 8px;
+  padding: 12px;
+  background-color: @base;
+  color: @text;
+}
+
+tooltip label {
+  color: @text;
+  padding: 4px;
+}
+
+button {
+  box-shadow: inset 0 -3px transparent;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: inherit;
+}
+
+#workspaces {
+  border-radius: 6px;
+  background: @base;
+  padding: 0 4px;
+}
+
+#workspaces button {
+  color: @text;
+  transition:none;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+
+#workspaces button.visible {
+  background-color: @overlay;
+  transition: none;
+  animation: none;
+}
+
+#workspaces button.active {
+  /* background-color: @lavender; */
+  color: @green;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  transition: none;
+  animation: none;
+  color: @bg;
+}
+
+#workspaces button:hover {
+  background-color: @lavender;
+  transition: none;
+  animation: none;
+  color: @bg;
+}
+
+
+
+#clock,
+#battery,
+#disk,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#language,
+#backlight,
+#custom-spotify,
+#window,
+#mpris,
+#power-profiles-daemon,
+#custom-nvid,
+#bluetooth,
+#power,
+#hardware,
+#mpd {
+  background-color: @base;
+  color: @text;
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin: 0 4px;
+}
+
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#power-profiles-daemon.performance {
+  color: @red;
+}
+
+#custom-nvid.active {
+  color: @red;
+}
+
+#memory,
+#cpu,
+#temperature {
+  padding: 0 10px;
+  margin: 0 2px;
+  background-color: @surface;
+  border-radius: 6px;
+}
+
+#pulseaudio {
+  color: @yellow;
+}
+
+#pulseaudio.muted {
+  color: @overlay;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  animation: warn 4s ease-in-out infinite alternate;
+}
+
+#battery.critical:not(.charging) {
+  animation: blink 2s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    background-color: @yellow;
+    color: @bg;
+  }
+  to {
+    background-color: @red;
+    color: @bg;
+  }
+}
+
+@keyframes warn {
+  from {
+    background-color: @yellow;
+    color: @bg;
+  }
+  to {
+    background-color: @orange;
+    color: @bg;
+  }
+}
+
+#network.disconnected {
+  background-color: @red;
+}
+
+#temperature.critical {
+  background-color: @red;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  background-color: @yellow;
+  -gtk-icon-effect: highlight;
+}
+
+#idle_inhibitor.activated {
+  background-color: @lavender;
+  color: @bg;
+}
+
+#keyboard-state > label {
+  padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+  background: rgba(255, 255, 255, 0.1);
+}
+
