@@ -36,11 +36,13 @@ button {
 }
 
 button:hover {
-  background-color: inherit;
+  /* background-color: @white; */
+  /* background-color: inherit; */
 }
 
 #workspaces {
   border-radius: 6px;
+  color: @text;
   background: @base;
   padding: 0 4px;
 }
@@ -52,6 +54,13 @@ button:hover {
   border-radius: 6px;
 }
 
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: @bg;
+  background: @text;
+}
+
 #workspaces button.visible {
   background-color: @overlay;
   transition: none;
@@ -59,19 +68,12 @@ button:hover {
 }
 
 #workspaces button.active {
-  /* background-color: @lavender; */
-  color: @green;
+  background-color: @lavender;
+  color: @black;
 }
 
 #workspaces button.urgent {
   background-color: @red;
-  transition: none;
-  animation: none;
-  color: @bg;
-}
-
-#workspaces button:hover {
-  background-color: @lavender;
   transition: none;
   animation: none;
   color: @bg;
