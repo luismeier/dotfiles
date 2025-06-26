@@ -133,7 +133,7 @@ button:hover {
 }
 
 #pulseaudio.muted {
-  color: @overlay;
+  color: @text;
 }
 
 #battery.charging,
