@@ -68,6 +68,8 @@ export EDITOR="nvim"
 export visual="nvim"
 export MANPAGER="nvim -c 'Man!'"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 ## Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"

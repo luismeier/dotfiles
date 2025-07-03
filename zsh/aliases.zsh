@@ -1,10 +1,11 @@
 # Neovim alias
 alias v="nvim"
+alias vim="nvim"
 alias vk="NVIM_APPNAME=kickstart.nvim nvim"
-vv() {
-  select config in lazyvim kickstart nvchad astrovim lunarvim
-  do NVIM_APPNAME=nvim-$config nvim $@; break; done
-}
+
+# Venv 
+alias venv="source .venv/bin/activate"
+
 
 ## Replace ls with exa if available
 if [ -x "$(command -v eza)" ]; then
