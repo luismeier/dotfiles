@@ -1,65 +1,79 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# A dynamic rclone mount/unmount script that scans available remotes from your rclone config.
 
-function ask_mount {
-  read -p "What to mount? [P]ersonal, [T]eam, [A]ll, [Q]uit " type
-  case $type in
-  [Pp]*)
-    echo "Mounting Personal"
-    rclone mount OST-Personal: /home/luism/OST-OneDrive/personal/ --poll-interval 0m1s --vfs-cache-mode full --daemon
-    ;;
-  [Tt]*)
-    echo "Mounting Team"
-    rclone mount OST-TeamDejan: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --ignore-checksum --ignore-size --vfs-cache-mode full --daemon
-    ;;
-  [Aa]*)
-    echo "Mounting both"
-    rclone mount OST-TeamDejan: /home/luism/OST-OneDrive/TeamDejan --poll-interval 0m1s --vfs-cache-mode full --ignore-checksum --ignore-size --daemon
-    rclone mount OST-Personal: /home/luism/OST-OneDrive/personal --poll-interval 0m1s --vfs-cache-mode full --daemon
-    exit
-    ;;
-  [Qq]*) ;;
-  *) echo "Not an option" ;;
-  esac
+# Load available remotes into an array
+mapfile -t REMOTES < <(rclone listremotes | sed 's/:$//')
+
+# Base mount directory (adjust as needed)
+BASE_DIR="$HOME/OST-OneDrive"
+
+function list_remotes() {
+  echo "Available remotes:"
+  for i in "${!REMOTES[@]}"; do
+    echo "  [$((i + 1))] ${REMOTES[$i]}"
+  done
 }
 
-function ask_umount {
-  read -p "What to unmount? [P]ersonal, [T]eam, [A]ll, [Q]uit " type
-  case $type in
-  [Pp]*)
-    echo "unmounting Personal"
-    fusermount -u /home/luism/OST-OneDrive/personal
-    ;;
-  [Tt]*)
-    echo "unmounting Team"
-    fusermount -u /home/luism/OST-OneDrive/TeamDejan
-    ;;
-  [Aa]*)
-    echo "unmounting all\n"
-    fusermount -u /home/luism/OST-OneDrive/personal
-    fusermount -u /home/luism/OST-OneDrive/TeamDejan
-    exit
-    ;;
-  [Qq]*) ;;
-  *) echo "Not an option" ;;
-  esac
+function choose_remote() {
+  list_remotes
+  read -p "Select a remote by number (or Q to quit): " choice
+  [[ "$choice" =~ ^[Qq]$ ]] && return 1
+  if ! [[ "$choice" =~ ^[0-9]+$ ]] || ((choice < 1 || choice > ${#REMOTES[@]})); then
+    echo "Invalid selection." >&2
+    return 1
+  fi
+  REMOTE_NAME="${REMOTES[$((choice - 1))]}"
+  return 0
 }
 
+function mount_remote() {
+  if choose_remote; then
+    TARGET_DIR="$BASE_DIR/$REMOTE_NAME"
+    mkdir -p "$TARGET_DIR"
+    echo "Mounting '$REMOTE_NAME' to '$TARGET_DIR'..."
+    rclone mount "$REMOTE_NAME": "$TARGET_DIR" \
+      --poll-interval 1s \
+      --vfs-cache-mode full \
+      --daemon
+  fi
+}
+
+function unmount_remote() {
+  if choose_remote; then
+    TARGET_DIR="$BASE_DIR/$REMOTE_NAME"
+    echo "Unmounting '$REMOTE_NAME' from '$TARGET_DIR'..."
+    fusermount -u "$TARGET_DIR"
+  fi
+}
+
+# Main loop
 while true; do
-  read -p "[M]ount or [u]nmount?[Q]uit " mount_type
-  case $mount_type in
+  read -p "[M]ount, [U]nmount, [A]ll, or [Q]uit? " action
+  case "$action" in
   [Mm]*)
-    echo "Mount selected"
-    ask_mount
+    mount_remote
     ;;
   [Uu]*)
-    echo "Unmount selected"
-    ask_umount
+    unmount_remote
+    ;;
+  [Aa]*)
+    echo "Processing all remotes..."
+    for REMOTE_NAME in "${REMOTES[@]}"; do
+      TARGET_DIR="$BASE_DIR/$REMOTE_NAME"
+      mkdir -p "$TARGET_DIR"
+      echo "Mounting '$REMOTE_NAME'..."
+      rclone mount "$REMOTE_NAME": "$TARGET_DIR" \
+        --poll-interval 1s \
+        --vfs-cache-mode full \
+        --daemon
+    done
     ;;
   [Qq]*)
-    echo "Exiting"
-    exit
+    echo "Goodbye!"
+    exit 0
     ;;
-
-  *) echo "Not an option" ;;
+  *)
+    echo "Invalid option."
+    ;;
   esac
 done
