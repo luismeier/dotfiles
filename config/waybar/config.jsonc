@@ -36,8 +36,8 @@
     "format-icons": {
       "default": "",
       "performance": "",
-      "balanced": " ",
-      "power-saver": " ",
+      "balanced": "",
+      "power-saver": "",
     },
   },
   "group/power": {
@@ -87,19 +87,19 @@
   "hyprland/workspaces": {
     "disable-scroll": true,
     "show-special": true,
-    "format": "{name}{icon}",
+    "format": "{name} {icon}",
     "all-outputs": false,
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
     "format-icons": {
-      "1": "  ",
-      "2": "  ",
-      "3": "  ",
-      "4": "  ",
-      "8": "  ",
-      "9": "  ",
-      "10": " ",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "8": "",
+      "9": "",
+      "10": "",
       "urgent": "",
       // "active": "",
       "default": ""
@@ -117,8 +117,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": " ",
-      "deactivated": " ",
+      "activated": "",
+      "deactivated": "",
     },
   },
   "tray": {
@@ -201,11 +201,11 @@
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": [
-      " ",
-      " ",
-      " ",
-      " ",
-      " "
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
     "tooltip": true,
     "tooltip-format": "{timeTo}\nPWR:{power}W",
@@ -219,13 +219,13 @@
     "format-linked": "{ifname} (No IP) ",
     // "format-alt": "{ifname}: {ipaddr}/{cidr}",
     "format-icons": [
-      "󰤯 ",
-      "󰤟 ",
-      "󰤢 ",
-      "󰤥 ",
-      "󰤨 "
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
     ],
-    "format-disconnected": "󰖪 ",
+    "format-disconnected": "󰖪",
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
