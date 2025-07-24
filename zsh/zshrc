@@ -33,12 +33,6 @@ autoload -Uz compinit && compinit
 autoload -Uz promptinit && promptinit
 zinit cdreplay -q # recomended by doc, allows to reaplay cached cd's
 
-# Load my custom stuff
-export MYZSH=$HOME/dotfiles/zsh/
-source $MYZSH/config.zsh
-source $MYZSH/aliases.zsh
-source $MYZSH/scripts.zsh # Sources everything in the zsh_scripts folder
-
 # Home, End and Delete keys
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
@@ -62,6 +56,7 @@ bindkey '^n' history-search-forward
 
 # Ctrl-Space to accept
 bindkey '^ ' autosuggest-accept
+bindkey -v
 
 # Export editors
 export EDITOR="nvim"
@@ -74,6 +69,15 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
-eval "$(uv --generate-shell-completion zsh)"
+eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 eval "$(starship init zsh)"
+
+# Load my custom stuff
+export MYZSH=$HOME/dotfiles/zsh/
+source $MYZSH/config.zsh
+source $MYZSH/aliases.zsh
+source $MYZSH/scripts.zsh # Sources everything in the zsh_scripts folder
+
+# opencode
+export PATH=/home/luism/.opencode/bin:$PATH
