@@ -19,6 +19,7 @@ vim.opt.showcmd = true
 vim.opt.ignorecase = true
 
 vim.g.snacks_animate = false
+vim.opt.wrap = true
 -- this prevents crashing with weird folds
 -- vim.opt.foldmethod = "manual"
 --

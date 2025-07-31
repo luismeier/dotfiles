@@ -56,7 +56,6 @@ bindkey '^n' history-search-forward
 
 # Ctrl-Space to accept
 bindkey '^ ' autosuggest-accept
-bindkey -v
 
 # Export editors
 export EDITOR="nvim"
