@@ -2,7 +2,7 @@
 # History related settings
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 HISTSIZE=5000
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase # remove duplicates from history
 # setopt appendhistory

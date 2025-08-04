@@ -31,10 +31,6 @@ fi
 
 # Some movement alias
 alias ..='cd ..'
-# alias ...='cd ../..'
-# alias ....='cd ../../..'
-# alias .....='cd ../../../..'
-# alias ......='cd ../../../../..'
 
 # Git aliases
 alias gs="git status"
