@@ -65,12 +65,33 @@ export MANPAGER="nvim -c 'Man!'"
 export PATH="$HOME/.local/bin:$PATH"
 
 ## Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(direnv hook zsh)"
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
+# Lazy load completions for better startup performance
+lazy_load_completion() {
+    local cmd="$1"
+    local init_cmd="$2"
+    
+    if command -v "$cmd" >/dev/null 2>&1; then
+        eval "$cmd() {
+            unfunction $cmd 2>/dev/null || true
+            eval \"$init_cmd\"
+            $cmd \"\$@\"
+        }"
+    fi
+}
+
+# Always load these immediately (needed for keybindings/core functionality)
 eval "$(starship init zsh)"
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+command -v fzf >/dev/null && eval "$(fzf --zsh)"
+
+# Special case for zoxide since it replaces cd
+if command -v zoxide >/dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+# Lazy load heavy completions
+lazy_load_completion uv 'eval "$(uv generate-shell-completion zsh)"'
+lazy_load_completion uvx 'eval "$(uvx --generate-shell-completion zsh)"'
 
 # Load my custom stuff
 export MYZSH=$HOME/dotfiles/zsh/
@@ -80,3 +101,4 @@ source $MYZSH/scripts.zsh # Sources everything in the zsh_scripts folder
 
 # opencode
 export PATH=/home/luism/.opencode/bin:$PATH
+
