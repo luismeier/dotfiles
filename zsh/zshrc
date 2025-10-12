@@ -57,6 +57,19 @@ bindkey '^n' history-search-forward
 # Ctrl-Space to accept
 bindkey '^ ' autosuggest-accept
 
+# fzf init (compatible across versions)
+if command -v fzf >/dev/null 2>&1; then
+  if fzf --help 2>&1 | grep -q -- '--zsh'; then
+    eval "$(fzf --zsh)"
+  else
+    # legacy fallback
+    for f in /usr/share/fzf/shell/{completion,key-bindings}.zsh \
+             /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh; do
+      [ -f "$f" ] && source "$f"
+    done
+  fi
+fi
+
 # Export editors
 export EDITOR="nvim"
 export visual="nvim"
