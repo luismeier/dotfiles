@@ -1,17 +1,18 @@
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
-    local lspconfig = require("lspconfig")
+    opts.servers = opts.servers or {}
+    opts.servers["*"] = opts.servers["*"] or {}
+    opts.servers["*"].keys = opts.servers["*"].keys or {}
 
-    -- Add your keymap
-    local keys = require("lazyvim.plugins.lsp.keymaps").get()
-    keys[#keys + 1] = {
+    table.insert(opts.servers["*"].keys, {
       "gV",
       function()
         vim.cmd("vsplit")
         vim.lsp.buf.definition()
       end,
       desc = "Open definition in split",
-    }
+      has = "definition", -- only set if server supports it
+    })
   end,
 }
