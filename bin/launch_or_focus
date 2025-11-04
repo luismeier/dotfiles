@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# launch_or_focus — focus a matching window in Hyprland, or launch the app
+# Usage:
+#   launch_or_focus <selector-regex> -- <command to launch...>
+# Examples:
+#   launch_or_focus "obsidian" -- flatpak run md.obsidian.Obsidian
+#   launch_or_focus "kitty" -- kitty
+#   launch_or_focus "firefox" -- firefox --new-window
+
+set -euo pipefail
+
+die() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+if [[ $# -lt 2 ]]; then
+  cat >&2 <<'EOF'
+Usage:
+  launch_or_focus <selector-regex> -- <command...>
+
+selector-regex is matched (case-insensitive) against Hyprland window:
+  - .class
+  - .initialClass
+  - .title
+EOF
+  exit 2
+fi
+
+SELECTOR="$1"
+shift
+
+# Expect a literal `--` separator between selector and command
+if [[ "${1:-}" != "--" ]]; then
+  die "Missing '--' separator before command."
+fi
+shift
+
+LAUNCH_CMD=("$@")
+[[ ${#LAUNCH_CMD[@]} -gt 0 ]] || die "No command provided to launch."
+
+# Helper: focus by window address
+focus_address() {
+  local addr="$1"
+  hyprctl dispatch focuswindow "address:${addr}" >/dev/null 2>&1
+}
+
+# Try to find a matching client (prefer jq for robust JSON filtering)
+find_matching_address() {
+  if command -v jq >/dev/null 2>&1; then
+    hyprctl -j clients |
+      jq -r --arg re "$SELECTOR" '
+          .[]
+          | select(
+              (.class|test($re; "i"))
+              or (.initialClass|test($re; "i"))
+              or (.title|test($re; "i"))
+            )
+          | .address
+        ' |
+      head -n1
+  else
+    # Fallback (less robust): try to pull first matching address from text output
+    # We grab blocks separated by blank lines and look for a Class/InitialClass/Title hit
+    hyprctl clients |
+      awk -v IGNORECASE=1 -v re="$SELECTOR" '
+          BEGIN { RS=""; FS="\n" }
+          {
+            addr=""; class=""; iclass=""; title="";
+            for(i=1;i<=NF;i++){
+              if($i ~ /address:/) { sub(/.*address: /,"",$i); addr=$i }
+              if($i ~ /class:/)   { sub(/.*class: /,"",$i); class=$i }
+              if($i ~ /initialClass:/) { sub(/.*initialClass: /,"",$i); iclass=$i }
+              if($i ~ /title:/)   { sub(/.*title: /,"",$i); title=$i }
+            }
+            if (addr != "" && (class ~ re || iclass ~ re || title ~ re)) {
+              print addr; exit
+            }
+          }'
+  fi
+}
+
+# 1) If a matching window exists, focus it.
+if
+  addr="$(find_matching_address)"
+  [[ -n "${addr}" ]]
+then
+  focus_address "$addr" && exit 0
+fi
+
+# 2) Otherwise launch the command.
+#    Put in background so Hyprland isn't blocked.
+"${LAUNCH_CMD[@]}" >/dev/null 2>&1 &
+disown
+
+# 3) Optional: brief wait to focus once the window appears (best-effort).
+#    Comment out this block if you dislike the tiny delay.
+for _ in {1..30}; do
+  sleep 0.1
+  if
+    addr="$(find_matching_address)"
+    [[ -n "${addr}" ]]
+  then
+    focus_address "$addr"
+    break
+  fi
+done
