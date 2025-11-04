@@ -30,6 +30,9 @@ tooltip label {
   padding: 4px;
 }
 
+
+
+
 button {
   box-shadow: inset 0 -3px transparent;
   border-radius: 6px;
@@ -108,6 +111,12 @@ button:hover {
   border-radius: 6px;
   padding: 2px 5px;
   margin: 0 0px;
+}
+
+
+#submap {
+  background-color: @green;
+  color: @white;
 }
 
 #power-profiles-daemon.power-saver {
