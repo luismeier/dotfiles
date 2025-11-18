@@ -258,8 +258,8 @@
         ""
       ],
     },
-    // "on-click": "pavucontrol",
-    "on-click": "flatpak run com.saivert.pwvucontrol",
+    "on-click": "pavucontrol",
+    // "on-click": "flatpak run com.saivert.pwvucontrol",
     "on-click-middle": "volume mute",
     "scroll-step": 1,
     "input": true,
