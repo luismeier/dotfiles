@@ -186,3 +186,6 @@ fi
 export MYZSH=$HOME/dotfiles/zsh/
 
 [ -f $MYZSH/scripts.zsh ] && source $MYZSH/scripts.zsh
+FPATH="$HOME/.docker/completions:$FPATH"
+autoload -Uz compinit
+compinit
