@@ -3,10 +3,14 @@
 # | | | |\_/| |  https://luismeier.ch
 # | |_|_|_  |_|
 # |_______|
-#
+
+# For perf measurmenent
+# zmodload zsh/zprof # at the top of the file
+
 # ==============================================================================
 # ZINIT INITIALIZATION
 # ==============================================================================
+
 # Set the directory we want to store zinit and plugins, download if not available
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -17,9 +21,14 @@ source "${ZINIT_HOME}/zinit.zsh"
 # ZSH PLUGINS
 # ==============================================================================
 # Syntax highlighting, completions, and suggestions
+
+zinit ice wait"0" lucid
 zinit light zsh-users/zsh-syntax-highlighting
+
 zinit light zsh-users/zsh-completions
+zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
+zinit ice wait"0" lucid
 zinit light Aloxaf/fzf-tab
 
 # Oh My Zsh plugins
@@ -34,11 +43,18 @@ zinit ice as"command" from"gh-r" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
+
+
 # ==============================================================================
 # COMPLETION SYSTEM
 # ==============================================================================
+
+# Add docker completions to path
+FPATH="$HOME/.docker/completions:$FPATH"
+
+# Completion init
 autoload -Uz compinit && compinit
-autoload -Uz promptinit && promptinit
+# autoload -Uz promptinit && promptinit
 zinit cdreplay -q  # Replay compdefs from cache
 
 # Completion styling
@@ -51,6 +67,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Docker option stacking
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
 
 # ==============================================================================
 # HISTORY CONFIGURATION
@@ -67,6 +84,12 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 bindkey -v
+
+# Open buffer line in EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # ==============================================================================
 # KEYBINDINGS
@@ -186,6 +209,6 @@ fi
 export MYZSH=$HOME/dotfiles/zsh/
 
 [ -f $MYZSH/scripts.zsh ] && source $MYZSH/scripts.zsh
-FPATH="$HOME/.docker/completions:$FPATH"
-autoload -Uz compinit
-compinit
+
+# For perf mesurmenents
+# zprof
