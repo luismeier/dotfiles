@@ -185,7 +185,7 @@
       "",
       "",
       ""
-    ],
+    ]
   },
   "battery": {
     "format": "{icon} {capacity}% ",
@@ -219,12 +219,17 @@
         "󰁹"
       ]
     },
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-    "interval": 5,
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%\n{time}",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%\n{time}",
+    "interval": 30,
     "states": {
       "warning": 20,
       "critical": 10
+    },
+    "events": {
+      "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+      "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+      "on-charging-100": "notify-send -u normal 'Battery Full!'"
     }
   },
   "network": {
