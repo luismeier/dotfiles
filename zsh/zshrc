@@ -26,9 +26,9 @@ zinit ice wait"0" lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
 zinit light zsh-users/zsh-completions
-zinit ice wait"0" lucid
+# zinit ice wait"0" lucid
 zinit light zsh-users/zsh-autosuggestions
-zinit ice wait"0" lucid
+# zinit ice wait"0" lucid
 zinit light Aloxaf/fzf-tab
 
 # Oh My Zsh plugins
@@ -168,6 +168,7 @@ alias vk="NVIM_APPNAME=kickstart.nvim nvim"
 
 # Python virtual environment
 alias venv="source .venv/bin/activate"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # Better ls with eza/exa
 if command -v eza >/dev/null 2>&1; then
@@ -212,3 +213,7 @@ export MYZSH=$HOME/dotfiles/zsh/
 
 # For perf mesurmenents
 # zprof
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
