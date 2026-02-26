@@ -1,24 +1,51 @@
-[init]
-  defaultBranch = main
-
 [user]
-	email = luis.meier@ost.ch
-	name = Luis Meier
+    name = Luis Meier
+    email = luis.meier@ost.ch
+
+[init]
+    defaultBranch = main
 
 [core]
-	editor = nvim
+    editor = nvim
+    autocrlf = input        # convert CRLF to LF on commit, leave LF alone on checkout
 
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 
-[alias]
-	co = checkout
-  st = status
+[credential "https://gitlab.ost.ch"]
+    helper =
+    helper = !/usr/bin/glab auth git-credential
+
+[pull]
+    rebase = true           # rebase local commits on top of fetched, avoids merge commits on pull
+
+[rebase]
+    autoStash = true        # auto stash/unstash dirty working tree when rebasing
+    autoSquash = true       # auto-apply fixup!/squash! commit prefixes during rebase
+
+[merge]
+    ff = false              # always create a merge commit, keeps branch history visible
+    conflictStyle = diff3   # show base + both sides in conflicts, not just ours/theirs
+
+[fetch]
+    prune = true            # remove local refs to deleted remote branches on fetch
+
+[branch]
+    autoSetupRebase = always  # new branches rebase by default instead of merge when pulling
+
+[diff]
+    colorMoved = zebra      # highlight moved code blocks differently from changed lines
 
 [status]
-  branch = true
-  showStash = true
-  showUntrackedFiles = all
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
+
+[alias]
+    co = checkout
+    st = status -sb         # short status with branch info
+    lg = log --oneline --graph --decorate --all  # visual branch graph in terminal
+    undo = reset HEAD~1 --mixed  # undo last commit, keep changes unstaged
