@@ -11,3 +11,9 @@ stow .
 
 ```
 
+If you have existing symlinks you can remove them with:
+
+```bash
+find ~/.config/ -xtype l -delete
+
+```
