@@ -2,4 +2,5 @@ README.md
 .gitignore
 .git
 .gitsubmodules
-storage/
+storage
+

@@ -1,4 +1,13 @@
 # dotfiles
-This is configured via [Dotbot](https://github.com/anishathalye/dotbot)
 
-run ./install to set symlinks etc.
+This repo contain my dotfiles.
+
+These are managed by GNU Stow.
+
+Setup the symlinkgs with:
+
+```bash
+stow .
+
+```
+
