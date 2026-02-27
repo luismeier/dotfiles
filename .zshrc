@@ -205,11 +205,11 @@ if [ -f "/etc/fedora-release" ]; then
 fi
 
 # ==============================================================================
-# CUSTOM CONFIGURATION
-# ==============================================================================
-export MYZSH=$HOME/dotfiles/zsh/
+# SOurce all my little special scripts
+for f in ~/.config/zsh/*.zsh; do source "$f"; done
+for f in ~/.config/zsh/*.bash; do source "$f"; done
 
-[ -f $MYZSH/scripts.zsh ] && source $MYZSH/scripts.zsh
+
 
 # For perf mesurmenents
 # zprof

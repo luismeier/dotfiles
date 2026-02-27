@@ -4,7 +4,6 @@ return {
     opts.servers = opts.servers or {}
     opts.servers["*"] = opts.servers["*"] or {}
     opts.servers["*"].keys = opts.servers["*"].keys or {}
-
     table.insert(opts.servers["*"].keys, {
       "gV",
       function()
@@ -14,5 +13,9 @@ return {
       desc = "Open definition in split",
       has = "definition", -- only set if server supports it
     })
+
+    opts.servers.qmlls = {
+      cmd = { "qmlls", "-E" },
+    }
   end,
 }
