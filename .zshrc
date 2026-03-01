@@ -17,19 +17,20 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Load my aliases
+[ -f "$XDG_CONFIG_HOME/shell/alias" ] && source "$XDG_CONFIG_HOME/shell/alias"
+
 # ==============================================================================
 # ZSH PLUGINS
 # ==============================================================================
 # Syntax highlighting, completions, and suggestions
 
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
 zinit ice wait"0" lucid
 zinit light zsh-users/zsh-syntax-highlighting
-
-zinit light zsh-users/zsh-completions
-# zinit ice wait"0" lucid
-zinit light zsh-users/zsh-autosuggestions
-# zinit ice wait"0" lucid
-zinit light Aloxaf/fzf-tab
 
 # Oh My Zsh plugins
 zinit snippet OMZP::command-not-found
@@ -42,7 +43,6 @@ zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
-
 
 
 # ==============================================================================
@@ -76,14 +76,20 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 HISTSIZE=10000
 HISTFILE=$HOME/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
+
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
-bindkey -v
+# bindkey -v
+
+setopt globdots
+setopt autocd
+setopt CORRECT
+setopt extended_glob
+setopt interactive_comments # Allow for comments
 
 # Open buffer line in EDITOR
 autoload -Uz edit-command-line
@@ -158,62 +164,13 @@ lazy_load_completion uv 'eval "$(uv generate-shell-completion zsh)"'
 lazy_load_completion uvx 'eval "$(uvx --generate-shell-completion zsh)"'
 
 
-# ==============================================================================
-# ALIASES
-# ==============================================================================
-# Neovim
-alias v="nvim"
-alias vim="nvim"
-alias vk="NVIM_APPNAME=kickstart.nvim nvim"
-
-# Python virtual environment
-alias venv="source .venv/bin/activate"
+# Kitty fixes
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-# Better ls with eza/exa
-if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons'
-  alias ll='eza -ghl --icons'
-  alias la='eza -la --icons'
-  alias lf='eza -a --icons'
-else
-  alias ll='ls -alF --color=auto'
-  alias la='ls -A --color=auto'
-  alias l='ls -CF --color=auto'
-fi
-
-# Navigation
-alias ..='cd ..'
-
-# Git
-alias gs="git status"
-alias gc="git commit"
-alias lg="lazygit"
-
-# Colorize and improve defaults
-alias grep='grep --color=auto'
-alias df="df -h"
-alias free="free -m"
-
-# Safety nets
-alias cp="cp -i"
-alias mv="mv -i"
-
-# Fedora-specific
-if [ -f "/etc/fedora-release" ]; then
-  alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
-fi
 
 # ==============================================================================
 # SOurce all my little special scripts
 for f in ~/.config/zsh/*.zsh; do source "$f"; done
 for f in ~/.config/zsh/*.bash; do source "$f"; done
 
-
-
 # For perf mesurmenents
 # zprof
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

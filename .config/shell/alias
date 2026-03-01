@@ -1,0 +1,45 @@
+# Neovim
+alias v="nvim"
+alias vim="nvim"
+alias vk="NVIM_APPNAME=kickstart.nvim nvim"
+
+
+# Better ls with eza/exa
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --icons'
+  alias ll='eza -ghl --icons'
+  alias la='eza -la --icons'
+  alias lf='eza -a --icons'
+else
+  alias ll='ls -alF --color=auto'
+  alias la='ls -A --color=auto'
+  alias l='ls -CF --color=auto'
+fi
+
+# Navigation
+alias ..='cd ..'
+
+# Git
+alias gs="git status"
+alias gp="git pull"
+alias gc="git commit"
+alias lg="lazygit"
+
+# Colorize and improve defaults
+alias grep='grep --color=auto'
+alias df="df -h"
+alias free="free -m"
+
+# Python venvs
+alias venv="source .venv/bin/activate"
+
+
+# Safety nets
+alias cp="cp -i"
+alias mv="mv -i"
+
+# Fedora-specific
+if [ -f "/etc/fedora-release" ]; then
+  alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+fi
+

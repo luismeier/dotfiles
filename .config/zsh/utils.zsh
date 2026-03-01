@@ -4,16 +4,12 @@
 
 # Force applications to run under X11 (useful on Wayland)
 function xrun() {
-  if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
+  GDK_BACKEND=x11 \
+    QT_QPA_PLATFORM=xcb \
+    SDL_VIDEODRIVER=x11 \
+    _JAVA_AWT_WM_NONREPARENTING=1 \
+    WINIT_UNIX_BACKEND=x11 \
     "$@"
-  else
-    GDK_BACKEND=x11 \
-      QT_QPA_PLATFORM=xcb \
-      SDL_VIDEODRIVER=x11 \
-      _JAVA_AWT_WM_NONREPARENTING=1 \
-      WINIT_UNIX_BACKEND=x11 \
-      "$@"
-  fi
 }
 
 # Make directory and cd into it
@@ -30,11 +26,9 @@ function extract() {
   if [ -z "$1" ]; then
     cat << 'EOF'
 Usage: extract <archive_file> [archive_file_2] [...]
-
 Supported formats:
   tar, tar.bz2, tar.gz, tar.xz, tbz2, tgz, txz
-  zip, rar, 7z, gz, bz2, xz, lzma, Z
-  deb, rpm, iso, cab, dmg, and more
+  zip, rar, 7z, gz, bz2, xz, lzma
 EOF
     return 1
   fi
@@ -42,10 +36,11 @@ EOF
   for archive in "$@"; do
     if [ ! -f "$archive" ]; then
       echo "extract: '$archive' - file does not exist"
-      return 1
+      continue
     fi
 
-    case "${archive,,}" in  # Convert to lowercase for matching
+    local lower="${archive:l}"  # zsh lowercase syntax
+    case "$lower" in
       *.tar.bz2|*.tbz2|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.tar)
         tar xvf "$archive" ;;
       *.bz2)
@@ -55,28 +50,26 @@ EOF
       *.zip|*.epub|*.cbz)
         unzip "$archive" ;;
       *.rar|*.cbr)
+        if ! command -v unrar &>/dev/null; then
+          echo "extract: unrar not installed"
+          continue
+        fi
         unrar x -ad "$archive" ;;
       *.7z|*.cb7)
+        if ! command -v 7z &>/dev/null; then
+          echo "extract: 7z not installed"
+          continue
+        fi
         7z x "$archive" ;;
       *.xz)
         unxz "$archive" ;;
       *.lzma)
         unlzma "$archive" ;;
-      *.z)
-        uncompress "$archive" ;;
-      *.deb|*.rpm|*.iso|*.dmg|*.cab|*.msi|*.pkg|*.arj|*.chm|*.lzh|*.udf|*.wim|*.xar)
-        7z x "$archive" ;;
-      *.exe)
-        cabextract "$archive" ;;
       *.cpio)
         cpio -id < "$archive" ;;
-      *.ace|*.cba)
-        unace x "$archive" ;;
-      *.cbt)
-        tar xvf "$archive" ;;
       *)
         echo "extract: '$archive' - unknown archive format"
-        return 1 ;;
+        continue ;;
     esac
   done
 }
