@@ -17,6 +17,24 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# ==============================================================================
+# ENVIRONMENT VARIABLES
+# ==============================================================================
+export EDITOR="nvim"
+export VISUAL="nvim"
+export MANPAGER="nvim -c 'Man!'"
+export TERM="kitty"
+export BROWSER="firefox"
+
+# follow XDG base dir specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+
+
 # Load my aliases
 [ -f "$XDG_CONFIG_HOME/shell/alias" ] && source "$XDG_CONFIG_HOME/shell/alias"
 
@@ -126,13 +144,6 @@ if command -v fzf >/dev/null 2>&1; then
     done
   fi
 fi
-
-# ==============================================================================
-# ENVIRONMENT VARIABLES
-# ==============================================================================
-export EDITOR="nvim"
-export VISUAL="nvim"
-export MANPAGER="nvim -c 'Man!'"
 
 # PATH configuration
 export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
