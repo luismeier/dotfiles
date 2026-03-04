@@ -23,7 +23,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER="nvim -c 'Man!'"
-export TERM="kitty"
+# export TERM="xterm-kitty"
+# export TERM="xterm-256color"
 export BROWSER="firefox"
 
 # follow XDG base dir specification
