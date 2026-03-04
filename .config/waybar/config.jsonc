@@ -270,15 +270,15 @@
     "input": true,
   },
   "custom/nvid": {
-    "exec": "$HOME/dotfiles/config/waybar/scripts/nvidia_status.sh",
+    "exec": "$XDG_CONFIG_HOME/waybar/scripts/nvidia_status.sh",
     "format": "Nv:{text}",
     "return-type": "json",
     "interval": 10,
     "signal": 1
   },
   "bluetooth": {
-    "on-click-right": "$HOME/dotfiles/config/waybar/scripts/bluetooth-control",
-    "on-click": "$HOME/dotfiles/config/waybar/scripts/rofi-bluetooth",
+    "on-click-right": "$XDG_CONFIG_HOME/waybar/scripts/bluetooth-control",
+    "on-click": "$XDG_CONFIG_HOME/waybar/scripts/rofi-bluetooth",
     "format": "{icon}",
     "interval": 15,
     "format-icons": {
