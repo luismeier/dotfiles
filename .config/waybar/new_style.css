@@ -105,6 +105,7 @@ button:hover {
 #bluetooth,
 #power,
 #hardware,
+#disk,
 #mpd {
   background-color: @base;
   color: @text;
@@ -133,6 +134,7 @@ button:hover {
 
 #memory,
 #cpu,
+#disk,
 #temperature {
   padding: 0 5px;
   margin: 0 2px;
@@ -140,13 +142,28 @@ button:hover {
   border-radius: 6px;
 }
 
-#pulseaudio {
-  color: @yellow;
+#bluetooth.on {
+  color: @cyan;
 }
 
-#pulseaudio.muted {
+#bluetooth.connected {
+  color: @blue;
+}
+
+#wireplumber {
+  color: @yellow;
+}
+#wireplumber.muted {
   color: @text;
 }
+
+/* #pulseaudio { */
+/*   color: @yellow; */
+/* } */
+/**/
+/* #pulseaudio.muted { */
+/*   color: @text; */
+/* } */
 
 #battery.charging,
 #battery.plugged {
