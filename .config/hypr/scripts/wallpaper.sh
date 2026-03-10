@@ -41,7 +41,7 @@ fi
 echo -e "Current wallpaper:\n  ${CURRENT_WALL:-<unknown>}"
 
 # Pick a random wallpaper different from CURRENT_WALL (if we know it)
-if [[ -n "${CURRENT_WALL}" ]]; then
+if [[ -n "${CURRENT_WALL}" ]] && [[ -f "${CURRENT_WALL}" ]]; then
   WALLPAPER="$(
     find "${WALLPAPER_DIR}" -type f \
       \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) \
