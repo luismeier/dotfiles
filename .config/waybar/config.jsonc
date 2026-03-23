@@ -19,7 +19,9 @@
     "power-profiles-daemon",
     "idle_inhibitor",
     "bluetooth",
-    "wireplumber",
+    // "wireplumber",
+    "wireplumber#source",
+    "wireplumber#sink",
     "network",
     "group/hardware",
     "backlight",
@@ -194,7 +196,7 @@
     "format": "{icon} {capacity}% ",
     "format-discharging": "{icon} {capacity}%",
     "format-charging": "{icon} {capacity}%",
-    "format-plugged": "",
+    "format-plugged": " {icon} {capacity}%",
     "format-full": "󰂅",
     "format-icons": {
       "charging": [
@@ -279,18 +281,27 @@
     "interval": 10,
     "signal": 1
   },
-  "wireplumber": {
-    "format": "{icon} {volume}%",
+  "wireplumber#sink": {
+    "format": "{volume}% {icon}",
     "format-muted": "󰝟",
     "format-icons": [
       "󰕿",
       "󰖀",
       "󰕾"
     ],
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
-    "on-click-right": "flatpak run com.saivert.pwvucontrol"
+    "on-click": "pavucontrol",
+    // "on-click": "flatpak run com.saivert.pwvucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": 1
+  },
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    // "format": "{volume}% ",
+    "format": "",
+    "on-click": "helvum",
+    "format-muted": "",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "scroll-step": 1
   },
   "bluetooth": {
     "on-click-right": "$XDG_CONFIG_HOME/waybar/scripts/bluetooth-control",
