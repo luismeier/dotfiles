@@ -34,7 +34,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+# export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 
 
 # Load my aliases
@@ -159,22 +159,6 @@ command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 # zoxide - replaces cd, must be loaded immediately
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
-# Lazy load heavy completions for faster startup
-lazy_load_completion() {
-    local cmd="$1"
-    local init_cmd="$2"
-    
-    if command -v "$cmd" >/dev/null 2>&1; then
-        eval "$cmd() {
-            unfunction $cmd 2>/dev/null || true
-            eval \"$init_cmd\"
-            $cmd \"\$@\"
-        }"
-    fi
-}
-
-lazy_load_completion uv 'eval "$(uv generate-shell-completion zsh)"'
-lazy_load_completion uvx 'eval "$(uvx --generate-shell-completion zsh)"'
 
 
 # Kitty fixes
@@ -187,3 +171,13 @@ for f in ~/.config/zsh/*.bash; do source "$f"; done
 
 # For perf mesurmenents
 # zprof
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+
+# Fix: uv run doesn't include positional arg completion in generated completions
+# Wrap _uv to fall back to file completion for non-flag positional args after 'uv run'
+functions[_uv_orig]=${functions[_uv]}
+_uv() {
+  _uv_orig "$@"
+  [[ ${words[2]} == run && ${words[CURRENT]} != -* ]] && _files
+}
