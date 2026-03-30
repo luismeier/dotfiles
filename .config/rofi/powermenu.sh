@@ -6,7 +6,7 @@ selected=$(echo -e $entries | rofi -dmenu -i | awk '{print tolower($2)}')
 
 case $selected in
 logout)
-  uwsm stop
+  hyprctl dispatch exit && uwsm stop
   # hyprctl dispatch exit
   ;;
 suspend)
