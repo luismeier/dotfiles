@@ -7,18 +7,18 @@ TRANSITION="${TRANSITION:-grow}" # fade|wipe|wave|grow|outer|random|none
 TRANSITION_DURATION="${TRANSITION_DURATION:-1}"
 TRANSITION_FPS="${TRANSITION_FPS:-60}"
 
-# Wait for swww-daemon to be ready
-echo "Waiting for swww-daemon to be ready..."
+# Wait for awww-daemon to be ready
+echo "Waiting for awww-daemon to be ready..."
 timeout_s=30
 for ((i = 0; i < timeout_s; i++)); do
-  if swww query &>/dev/null; then
+  if awww query &>/dev/null; then
     break
   fi
   sleep 1
 done
 
-if ! swww query &>/dev/null; then
-  echo "ERROR: swww-daemon is not running after ${timeout_s}s."
+if ! awww query &>/dev/null; then
+  echo "ERROR: awww-daemon is not running after ${timeout_s}s."
   exit 1
 fi
 
@@ -33,9 +33,9 @@ if [[ -L "${STATE_LINK}" ]]; then
   CURRENT_WALL="$(readlink -f "${STATE_LINK}" || true)"
 fi
 
-# Fallback: query swww for the currently loaded image
+# Fallback: query awww for the currently loaded image
 if [[ -z "${CURRENT_WALL}" ]]; then
-  CURRENT_WALL="$(swww query 2>/dev/null | grep -Eo '(/[^ ]+\.(png|jpg|jpeg))' | head -n 1 || true)"
+  CURRENT_WALL="$(awww query 2>/dev/null | grep -Eo '(/[^ ]+\.(png|jpg|jpeg))' | head -n 1 || true)"
 fi
 
 echo -e "Current wallpaper:\n  ${CURRENT_WALL:-<unknown>}"
@@ -63,7 +63,7 @@ fi
 
 echo -e "New wallpaper:\n  ${WALLPAPER}"
 
-swww img "${WALLPAPER}" \
+awww img "${WALLPAPER}" \
   --transition-type "${TRANSITION}" \
   --transition-duration "${TRANSITION_DURATION}" \
   --transition-fps "${TRANSITION_FPS}"
