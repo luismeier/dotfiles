@@ -33,7 +33,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export FZF_DEFAULT_OPTS="--info=default --header-first --layout=reverse "
 # export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 
 
@@ -112,10 +112,10 @@ setopt extended_glob
 setopt interactive_comments # Allow for comments
 
 # Open buffer line in EDITOR
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey '^xe' edit-command-line
-bindkey -M vicmd v edit-command-line
+# autoload -Uz edit-command-line
+# zle -N edit-command-line
+# bindkey '^xe' edit-command-line
+# bindkey -M vicmd v edit-command-line
 
 # ==============================================================================
 # KEYBINDINGS
@@ -135,17 +135,19 @@ bindkey '^ ' autosuggest-accept  # Ctrl-Space to accept
 # ==============================================================================
 # FZF INITIALIZATION
 # ==============================================================================
-if command -v fzf >/dev/null 2>&1; then
-  if fzf --help 2>&1 | grep -q -- '--zsh'; then
-    eval "$(fzf --zsh)"
-  else
-    # Legacy fallback
-    for f in /usr/share/fzf/shell/{completion,key-bindings}.zsh \
-             /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh; do
-      [ -f "$f" ] && source "$f"
-    done
-  fi
-fi
+command -v fzf > /dev/null && eval "$(fzf --zsh)"
+
+# if command -v fzf >/dev/null 2>&1; then
+#   if fzf --help 2>&1 | grep -q -- '--zsh'; then
+#     eval "$(fzf --zsh)"
+#   else
+#     # Legacy fallback
+#     for f in /usr/share/fzf/shell/{completion,key-bindings}.zsh \
+#              /usr/share/doc/fzf/examples/{completion,key-bindings}.zsh; do
+#       [ -f "$f" ] && source "$f"
+#     done
+#   fi
+# fi
 
 # PATH configuration
 export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
@@ -181,3 +183,7 @@ _uv() {
   _uv_orig "$@"
   [[ ${words[2]} == run && ${words[CURRENT]} != -* ]] && _files
 }
+
+
+export INOVITAS_SAVE_FOLDER=/home/luism/projects/artemis/innovitas_data/
+export INOVITAS_AUTH_CONFIG_PATH=/home/luism/projects/artemis/innovitas_data/auth_client.json
