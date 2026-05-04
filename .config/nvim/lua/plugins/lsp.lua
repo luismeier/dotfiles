@@ -17,5 +17,11 @@ return {
     opts.servers.qmlls = {
       cmd = { "qmlls", "-E" },
     }
+    opts.servers.tinymist = {
+      single_file_support = true,
+      settings = {
+        formatterMode = "typstyle",
+      },
+    }
   end,
 }
