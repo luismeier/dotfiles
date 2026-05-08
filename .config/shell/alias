@@ -2,6 +2,8 @@
 alias v="nvim"
 alias vim="nvim"
 alias vk="NVIM_APPNAME=kickstart.nvim nvim"
+alias chad="NVIM_APPNAME=nvchad.nvim nvim"
+alias astro="NVIM_APPNAME=astro.nvim nvim"
 
 
 # Better ls with eza/exa
