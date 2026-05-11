@@ -44,6 +44,11 @@ hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
+hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
+
 -- Locking and session management
 hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd(os.getenv("XDG_CONFIG_HOME") .. "/rofi/powermenu.sh"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
