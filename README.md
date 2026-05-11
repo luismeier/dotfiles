@@ -1,19 +1,34 @@
 # dotfiles
 
-This repo contain my dotfiles.
+My personal dotfiles, managed with a simple install script (no stow).
 
-These are managed by GNU Stow.
-
-Setup the symlinkgs with:
-
-```bash
-stow .
+## Structure
 
 ```
+dotfiles/
+├── config/      → ~/.config/*   (per-app config dirs)
+├── local/bin/   → ~/.local/bin/ (scripts)
+├── home/        → ~/.*          (shell dotfiles)
+└── install.sh
+```
 
-If you have existing symlinks you can remove them with:
+## Install
 
 ```bash
-find ~/.config/ -xtype l -delete
+./install.sh
+```
 
+Creates symlinks for all entries. Skips targets that already exist and are not symlinks (prints a message). Safe to re-run.
+
+## Remove symlinks
+
+```bash
+# config
+find ~/.config/ -maxdepth 1 -xtype l -delete
+
+# local/bin
+find ~/.local/bin/ -maxdepth 1 -xtype l -delete
+
+# home dotfiles
+find ~/ -maxdepth 1 -xtype l -delete
 ```
