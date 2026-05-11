@@ -2,7 +2,7 @@
 hl.monitor({
 	output = "desc:LG Display 0x06AA",
 	mode = "3840x2400@60.0",
-	position = "5207x1899",
+	position = "5120x1899",
 	scale = "2.0",
 	bitdepth = 10,
 })
@@ -27,14 +27,14 @@ hl.monitor({
 hl.monitor({
 	output = "desc:Ancor Communications Inc ASUS MG279 0x0000FCE6",
 	mode = "2560x1440@119.88",
-	position = "87x1659",
+	position = "0x1659",
 	scale = "1",
 })
 
 hl.monitor({
 	output = "desc:Ancor Communications Inc ASUS MG279 0x00023E15",
 	mode = "2560x1440@119.88",
-	position = "2647x1659",
+	position = "2560x1659",
 	scale = "1",
 })
 
