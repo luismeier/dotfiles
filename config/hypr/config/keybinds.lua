@@ -57,7 +57,8 @@ hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.kill())
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
+hl.bind(mainMod .. " + CTRL + Q", hl.dsp.window.kill())
 
 -- Master layout
 hl.bind(mainMod .. " + T", hl.dsp.layout("swapwithmaster"))
