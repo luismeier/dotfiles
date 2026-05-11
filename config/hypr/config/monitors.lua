@@ -1,0 +1,47 @@
+-- Laptop monitor
+hl.monitor({
+	output = "desc:LG Display 0x06AA",
+	mode = "3840x2400@60.0",
+	position = "5207x1899",
+	scale = "2.0",
+	bitdepth = 10,
+})
+
+-- Work monitors
+hl.monitor({
+	output = "desc:Dell Inc. DELL U3421WE GLVW653",
+	mode = "3440x1440@59.97",
+	position = "4587x459",
+	scale = "1",
+})
+
+hl.monitor({
+	output = "desc:Dell Inc. DELL U2722DE 6TGK6P3",
+	mode = "2560x1440@59.95",
+	position = "3147x0",
+	scale = "1",
+	transform = 3,
+})
+
+-- Home monitors (@120 Hz)
+hl.monitor({
+	output = "desc:Ancor Communications Inc ASUS MG279 0x0000FCE6",
+	mode = "2560x1440@119.88",
+	position = "87x1659",
+	scale = "1",
+})
+
+hl.monitor({
+	output = "desc:Ancor Communications Inc ASUS MG279 0x00023E15",
+	mode = "2560x1440@119.88",
+	position = "2647x1659",
+	scale = "1",
+})
+
+-- Every other monitor (fallback)
+hl.monitor({
+	output = "",
+	mode = "preferred",
+	position = "auto",
+	scale = "1",
+})

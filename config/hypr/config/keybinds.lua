@@ -1,10 +1,10 @@
 local terminal = "kitty"
 local fileManager = "dolphin"
-local mainMod = "super"
+local mainMod = "SUPER"
 
 -- launcher (rofi)
 hl.bind("ALT + space", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
-hl.bind("super + W", hl.dsp.exec_cmd("pkill rofi || rofi -show window"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill rofi || rofi -show window"))
 
 -- keybinds for application launch
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
@@ -68,14 +68,14 @@ for i = 1, 10 do
 end
 
 -- move current workspace to sccreen
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.workspace.move("l"))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.workspace.move("r"))
-hl.bind(mainMod .. " + CTRL + up", hl.dsp.workspace.move("d"))
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.workspace.move("u"))
-hl.bind(mainMod .. " + CTRL + h", hl.dsp.workspace.move("l"))
-hl.bind(mainMod .. " + CTRL + l", hl.dsp.workspace.move("r"))
-hl.bind(mainMod .. " + CTRL + j", hl.dsp.workspace.move("d"))
-hl.bind(mainMod .. " + CTRL + k", hl.dsp.workspace.move("u"))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.workspace.move({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + up", hl.dsp.workspace.move({ monitor = "d" }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.workspace.move({ monitor = "u" }))
+hl.bind(mainMod .. " + CTRL + h", hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + l", hl.dsp.workspace.move({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + j", hl.dsp.workspace.move({ monitor = "d" }))
+hl.bind(mainMod .. " + CTRL + k", hl.dsp.workspace.move({ monitor = "u" }))
 
 -- next workspace on monitor
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.focus({ workspace = "m+1" }))
@@ -99,14 +99,14 @@ hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
 -- Start a submap called "resize".
 hl.define_submap("resize", function()
 	-- Set repeating binds for resizing the active window.
-	hl.bind("right", hl.resize({ x = 10, y = 0, relative = true }), { repeating = true })
-	hl.bind("left", hl.resize({ x = -10, y = 0, relative = true }), { repeating = true })
-	hl.bind("up", hl.resize({ x = 0, y = 10, relative = true }), { repeating = true })
-	hl.bind("down", hl.resize({ x = 10, y = -10, relative = true }), { repeating = true })
+	hl.bind("right", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+	hl.bind("left", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+	hl.bind("up", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+	hl.bind("down", hl.dsp.window.resize({ x = 10, y = -10, relative = true }), { repeating = true })
 
 	-- Use `reset` to go back to the global submap
 	hl.bind("escape", hl.dsp.submap("reset"))
-	hl.bind(mainMod .. " + R", hl.dsp.submap("reset"))
+	-- hl.bind(mainMod .. " + R", hl.dsp.submap("reset"))
 end)
 
 -- Laptop multimedia keys for volume and LCD brightness
