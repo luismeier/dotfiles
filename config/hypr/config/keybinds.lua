@@ -13,12 +13,14 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(terminal .. " -e 'nvim'"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
 hl.bind(
 	mainMod .. " + O",
-	hl.dsp.exec_cmd(os.getenv("HOME") .. '/.local/bin/launch_or_focus "obsidian" -- flatpak run md.obsidian.Obsidian')
+	hl.dsp.exec_cmd(
+		os.getenv("HOME") .. '/.local/bin/launch_or_focus ".*obsidian.*" -- flatpak run md.obsidian.Obsidian'
+	)
 )
 hl.bind(
 	mainMod .. " + M",
 	hl.dsp.exec_cmd(
-		os.getenv("HOME") .. '/.local/bin/launch_or_focus "tidal" -- flatpak run com.mastermindzh.tidal-hifi'
+		os.getenv("HOME") .. '/.local/bin/launch_or_focus ".*tidal.*" -- flatpak run com.mastermindzh.tidal-hifi'
 	)
 )
 hl.bind(
