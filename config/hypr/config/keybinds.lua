@@ -40,17 +40,6 @@ hl.bind("Print", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/screenshot-cm
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/screenshot-cmd window"))
 hl.bind("CTRL + Print", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.local/bin/screenshot-cmd monitor"))
 
--- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-
-hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
-
 -- Locking and session management
 hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd(os.getenv("XDG_CONFIG_HOME") .. "/rofi/powermenu.sh"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
@@ -75,15 +64,26 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i })) -- move window to workspace
 end
 
--- move current workspace to sccreen
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.workspace.move({ monitor = "l" }))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.workspace.move({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + up", hl.dsp.workspace.move({ monitor = "d" }))
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.workspace.move({ monitor = "u" }))
-hl.bind(mainMod .. " + CTRL + h", hl.dsp.workspace.move({ monitor = "l" }))
-hl.bind(mainMod .. " + CTRL + l", hl.dsp.workspace.move({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + j", hl.dsp.workspace.move({ monitor = "d" }))
-hl.bind(mainMod .. " + CTRL + k", hl.dsp.workspace.move({ monitor = "u" }))
+-- Directional dict to loop thorugh
+local dirs = {
+	{ arrow = "left", vim = "h", dir = "l" },
+	{ arrow = "right", vim = "l", dir = "r" },
+	{ arrow = "down", vim = "j", dir = "d" },
+	{ arrow = "up", vim = "k", dir = "u" },
+}
+
+-- looping through arrow and vim keys so everything is set
+for _, d in ipairs(dirs) do
+	-- focus window
+	hl.bind(mainMod .. " + " .. d.arrow, hl.dsp.focus({ direction = d.dir }))
+	hl.bind(mainMod .. " + " .. d.vim, hl.dsp.focus({ direction = d.dir }))
+	-- move workspace to monitor
+	hl.bind(mainMod .. " + CTRL + " .. d.arrow, hl.dsp.workspace.move({ monitor = d.dir }))
+	hl.bind(mainMod .. " + CTRL + " .. d.vim, hl.dsp.workspace.move({ monitor = d.dir }))
+	-- move window
+	hl.bind(mainMod .. " + SHIFT + " .. d.arrow, hl.dsp.window.move({ direction = d.dir }))
+	hl.bind(mainMod .. " + SHIFT + " .. d.vim, hl.dsp.window.move({ direction = d.dir }))
+end
 
 -- next workspace on monitor
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.focus({ workspace = "m+1" }))
