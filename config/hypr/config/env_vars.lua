@@ -4,10 +4,10 @@ hl.env("SDL_VIDEODRIVER", "wayland")
 
 -- Explicitly set XDG desktop session things
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env(" XDG_SESSION_TYPE", "wayland ") -- enables vaapi driver
+hl.env("XDG_SESSION_TYPE", "wayland ") -- enables vaapi driver
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
-hl.env("GTK_THEME", "Adwaita:dark")
+-- hl.env("GTK_THEME", "Adwaita:dark")
 
 -- Cursor setting
 hl.env("HYPRCURSOR_THEME", "BreezeX-Black")

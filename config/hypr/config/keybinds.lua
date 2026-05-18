@@ -11,11 +11,11 @@ local function launch_or_focus(pattern, cmd)
 	end
 
 	-- try title match
-	w = hl.get_window("title:" .. pattern)
-	if w ~= nil then
-		hl.dispatch(hl.dsp.focus({ window = w }))
-		return
-	end
+	-- w = hl.get_window("title:" .. pattern)
+	-- if w ~= nil then
+	-- 	hl.dispatch(hl.dsp.focus({ window = w }))
+	-- 	return
+	-- end
 
 	-- no match, launch
 	hl.dispatch(hl.dsp.exec_cmd(cmd))
@@ -34,7 +34,7 @@ hl.bind(mainMod .. " + O", function()
 	launch_or_focus("obsidian", "flatpak run md.obsidian.Obsidian")
 end)
 hl.bind(mainMod .. " + M", function()
-	launch_or_focus("tidal", "flatpak run com.mastermindzh.tidal-hifi")
+	launch_or_focus("com.mastermindzh.tidal-hifi", "flatpak run com.mastermindzh.tidal-hifi")
 end)
 hl.bind(
 	mainMod .. " + A",
