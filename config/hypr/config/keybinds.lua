@@ -2,6 +2,25 @@ local terminal = "kitty"
 local fileManager = "dolphin"
 local mainMod = "SUPER"
 
+local function launch_or_focus(pattern, cmd)
+	-- try class match first
+	local w = hl.get_window("class:" .. pattern)
+	if w ~= nil then
+		hl.dispatch(hl.dsp.focus({ window = w }))
+		return
+	end
+
+	-- try title match
+	w = hl.get_window("title:" .. pattern)
+	if w ~= nil then
+		hl.dispatch(hl.dsp.focus({ window = w }))
+		return
+	end
+
+	-- no match, launch
+	hl.dispatch(hl.dsp.exec_cmd(cmd))
+end
+
 -- launcher (rofi)
 hl.bind("ALT + space", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("pkill rofi || rofi -show window"))
@@ -11,18 +30,12 @@ hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(terminal .. " -e 'nvim'"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
-hl.bind(
-	mainMod .. " + O",
-	hl.dsp.exec_cmd(
-		os.getenv("HOME") .. '/.local/bin/launch_or_focus ".*obsidian.*" -- flatpak run md.obsidian.Obsidian'
-	)
-)
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd(
-		os.getenv("HOME") .. '/.local/bin/launch_or_focus ".*tidal.*" -- flatpak run com.mastermindzh.tidal-hifi'
-	)
-)
+hl.bind(mainMod .. " + O", function()
+	launch_or_focus("obsidian", "flatpak run md.obsidian.Obsidian")
+end)
+hl.bind(mainMod .. " + M", function()
+	launch_or_focus("tidal", "flatpak run com.mastermindzh.tidal-hifi")
+end)
 hl.bind(
 	mainMod .. " + A",
 	hl.dsp.exec_cmd("flatpak run --command=io.github.alainm23.planify.quick-add io.github.alainm23.planify")
