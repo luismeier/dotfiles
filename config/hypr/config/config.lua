@@ -80,9 +80,7 @@ hl.config({
 	},
 
 	cursor = {
-		no_hardware_cursors = 2,
-		use_cpu_buffer = 2,
-		persistent_warps = true,
+		no_hardware_cursors = 0, -- 0 enabled, 1: disabled, 2: auto
 	},
 
 	render = {
